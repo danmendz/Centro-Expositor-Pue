@@ -27,15 +27,33 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // admin
     Route::get('users', function () { 
         Gate::authorize('see-users'); 
         return view('admin.users');
     })->name('users');
+
+    Route::get('/admin/index', function () {
+        Gate::authorize('admin-index'); 
+        return view('admin.index');
+    })->name('admin.index');
     
+    // cliente
     Route::get('events', function () {
         Gate::authorize('see-events'); 
         return view('cliente.events');
     })->name('events');
+
+    Route::get('/cliente/index', function () {
+        Gate::authorize('cliente-index'); 
+        return view('cliente.index');
+    })->name('cliente.index');
+
+    // usuario
+    Route::get('/usuario/index', function () {
+        Gate::authorize('usuario-index'); 
+        return view('usuario.index');
+    })->name('usuario.index');
 });
 
 require __DIR__.'/auth.php';

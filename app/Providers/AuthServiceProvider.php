@@ -27,13 +27,27 @@ class AuthServiceProvider extends ServiceProvider
     {
         // $this->registerPolicies();
 
+        // administrador
         Gate::define('see-users', fn(User $user) => 
             $user->role == User::ROLE_ADMINISTRADOR
         );
+
+        Gate::define('admin-index', fn(User $user) => 
+            $user->role == User::ROLE_ADMINISTRADOR
+        );
  
+        // cliente
         Gate::define('see-events', fn(User $user) =>
             $user->role == User::ROLE_CLIENTE
         );
-        //
+
+        Gate::define('cliente-index', fn(User $user) => 
+            $user->role == User::ROLE_CLIENTE
+        );
+
+        //usuario
+        Gate::define('usuario-index', fn(User $user) => 
+            $user->role == User::ROLE_USUARIO
+        );
     }
 }
