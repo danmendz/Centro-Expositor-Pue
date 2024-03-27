@@ -16,13 +16,19 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    @can('see-users') 
+                    @can('acceder-admin') 
                         <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                             {{ __('Usuarios') }}
                         </x-nav-link>
                     @endcan
 
-                    @can('see-events')
+                    @can('acceder-cliente')
+                        <x-nav-link :href="route('my-events')" :active="request()->routeIs('my-events')">
+                            {{ __('Mis eventos') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('acceder-usuario')
                         <x-nav-link :href="route('events')" :active="request()->routeIs('events')">
                             {{ __('Eventos') }}
                         </x-nav-link>
@@ -82,6 +88,24 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @can('acceder-admin')
+                <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                    {{ __('Usuarios') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('acceder-cliente')
+                <x-responsive-nav-link :href="route('my-events')" :active="request()->routeIs('my-events')">
+                    {{ __('Mis eventos') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('acceder-usuario')
+                <x-responsive-nav-link :href="route('events')" :active="request()->routeIs('events')">
+                    {{ __('Eventos') }}
+                </x-responsive-nav-link>
+            @endcan
 
         </div>
 
