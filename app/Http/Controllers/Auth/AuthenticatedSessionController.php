@@ -48,7 +48,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('usuario.index');
         } else {
             // If the role is not exist, you can redirect to another route
-            return redirect()->route('dashboard');
+            return redirect()->route('page-index');
         }
     }
 
