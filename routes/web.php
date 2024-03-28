@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Gate;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('page-index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     // Admin routes
     Route::middleware('can:acceder-admin')->group(function () {
         Route::get('users', function () {
-            return view('admin.users');
+            return view('admin.usuarios.users');
         })->name('users');
 
         Route::get('/admin/index', function () {
@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     // Cliente routes
     Route::middleware('can:acceder-cliente')->group(function () {
         Route::get('my-events', function () {
-            return view('cliente.events');
+            return view('cliente.eventos');
         })->name('my-events');
         
         Route::get('/cliente/index', function () {
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     // Usuario routes
     Route::middleware('can:acceder-usuario')->group(function () {
         Route::get('events', function () {
-            return view('usuario.events');
+            return view('usuario.eventos');
         })->name('events');
 
         Route::get('/usuario/index', function () {
