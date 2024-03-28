@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     // Admin routes
     Route::middleware('can:acceder-admin')->group(function () {
         Route::get('users', function () {
-            return view('admin.usuarios.users');
+            return view('admin.usuario.usuarios');
         })->name('users');
 
         Route::get('/admin/index', function () {
