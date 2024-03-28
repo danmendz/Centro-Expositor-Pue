@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Usuarios</title>
+    <title>Salones</title>
     <link href="{{asset('libs/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
@@ -24,13 +24,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-        <p class="mb-4">Usuarios registrados en la plataforma.</p>
+        <h1 class="h3 mb-2 text-gray-800">Salones</h1>
+        <p class="mb-4">Salones registrados en la plataforma.</p>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Salones</h6>
             </div>
 
             <div class="card-body">

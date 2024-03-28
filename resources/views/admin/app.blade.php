@@ -83,7 +83,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrar:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Ver</a>
+                        <a class="collapse-item" href="{{ route('salones') }}">Ver</a>
                         <a class="collapse-item" href="utilities-border.html">Agregrar</a>
                         <a class="collapse-item" href="utilities-animation.html">Actualizar</a>
                         <a class="collapse-item" href="utilities-other.html">Eliminar</a>
@@ -191,13 +191,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
-
-    <!-- Page level plugins -->
-    {{-- <script src="{{asset('libs/chart.js/Chart.min.js')}}"></script> --}}
-
-    <!-- Page level custom scripts -->
-    {{-- <script src="{{asset('libs/sbadmin/js/demo/chart-area-demo.js')}}"></script> --}}
-    {{-- <script src="{{asset('libs/sbadmin/js/demo/chart-pie-demo.js')}}"></script> --}}
 
 </body>
 

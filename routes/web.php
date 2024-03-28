@@ -29,13 +29,17 @@ Route::middleware('auth')->group(function () {
 
     // Admin routes
     Route::middleware('can:acceder-admin')->group(function () {
+        Route::get('/admin/index', function () {
+            return view('admin.index');
+        })->name('admin.index');
+
         Route::get('users', function () {
             return view('admin.usuario.usuarios');
         })->name('users');
 
-        Route::get('/admin/index', function () {
-            return view('admin.index');
-        })->name('admin.index');
+        Route::get('salones', function () {
+            return view('admin.salon.salones');
+        })->name('salones');
     });
 
     // Cliente routes
