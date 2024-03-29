@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('salones', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Cambiado de bigIncrements
+        Schema::create('salons', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('nombre', 30)->unique();
             $table->integer('capacidad');
             $table->decimal('precio', 10, 2);
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salones');
+        Schema::dropIfExists('salons');
     }
 };

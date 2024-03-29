@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('areas', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Cambiado de id()
+            $table->bigIncrements('id');
             $table->string('nombre', 30);
             $table->integer('capacidad');
             $table->unsignedBigInteger('id_evento')->nullable();
-            $table->unsignedBigInteger('id_salon')->nullable(); // Agregado el campo id_salon
+            $table->unsignedBigInteger('id_salon')->nullable();
             $table->foreign('id_evento')->references('id')->on('eventos'); // Definida la llave foránea
-            $table->foreign('id_salon')->references('id')->on('salones'); // Definida la llave foránea
+            $table->foreign('id_salon')->references('id')->on('salons'); // Definida la llave foránea
             $table->timestamps();
         });
     }
