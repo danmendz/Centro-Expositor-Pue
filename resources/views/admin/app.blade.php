@@ -76,7 +76,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrar:</h6>
                         <a class="collapse-item" href="{{ route('eventos.index') }}">Eventos</a>
-                        <a class="collapse-item" href="cards.html">Reservas</a>
+                        <a class="collapse-item" href="{{ route('reservas.index') }}">Reservas</a>
                     </div>
                 </div>
             </li>
@@ -91,7 +91,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrar:</h6>
                         <a class="collapse-item" href="{{ route('areas.index') }}">Areas</a>
-                        <a class="collapse-item" href="cards.html">Cajones</a>
+                        <a class="collapse-item" href="{{ route('cajons.index') }}">Cajones</a>
                         <a class="collapse-item" href="cards.html">Reservas</a>
                     </div>
                 </div>

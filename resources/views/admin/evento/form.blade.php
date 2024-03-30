@@ -28,22 +28,22 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="fecha_inicio" class="form-label">{{ __('Fecha Inicio') }}</label>
-            <input type="text" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{ old('fecha_inicio', $evento?->fecha_inicio) }}" id="fecha_inicio" placeholder="Fecha Inicio">
+            <input type="date" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{ old('fecha_inicio', $evento?->fecha_inicio) }}" id="fecha_inicio" placeholder="Fecha Inicio">
             {!! $errors->first('fecha_inicio', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="fecha_fin" class="form-label">{{ __('Fecha Fin') }}</label>
-            <input type="text" name="fecha_fin" class="form-control @error('fecha_fin') is-invalid @enderror" value="{{ old('fecha_fin', $evento?->fecha_fin) }}" id="fecha_fin" placeholder="Fecha Fin">
+            <input type="date" name="fecha_fin" class="form-control @error('fecha_fin') is-invalid @enderror" value="{{ old('fecha_fin', $evento?->fecha_fin) }}" id="fecha_fin" placeholder="Fecha Fin">
             {!! $errors->first('fecha_fin', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="hora_inicio" class="form-label">{{ __('Hora Inicio') }}</label>
-            <input type="text" name="hora_inicio" class="form-control @error('hora_inicio') is-invalid @enderror" value="{{ old('hora_inicio', $evento?->hora_inicio) }}" id="hora_inicio" placeholder="Hora Inicio">
+            <input type="time" name="hora_inicio" class="form-control @error('hora_inicio') is-invalid @enderror" value="{{ old('hora_inicio', $evento?->hora_inicio) }}" id="hora_inicio" placeholder="Hora Inicio">
             {!! $errors->first('hora_inicio', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="hora_fin" class="form-label">{{ __('Hora Fin') }}</label>
-            <input type="text" name="hora_fin" class="form-control @error('hora_fin') is-invalid @enderror" value="{{ old('hora_fin', $evento?->hora_fin) }}" id="hora_fin" placeholder="Hora Fin">
+            <input type="time" name="hora_fin" class="form-control @error('hora_fin') is-invalid @enderror" value="{{ old('hora_fin', $evento?->hora_fin) }}" id="hora_fin" placeholder="Hora Fin">
             {!! $errors->first('hora_fin', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
@@ -51,7 +51,12 @@
             <input type="text" name="estatus" class="form-control @error('estatus') is-invalid @enderror" value="{{ old('estatus', $evento?->estatus) }}" id="estatus" placeholder="Estatus">
             {!! $errors->first('estatus', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
-
+        <div class="form-group mb-2 mb20">
+            <label for="comentarios" class="form-label">{{ __('Comentarios') }}</label>
+            <textarea name="comentarios" class="form-control @error('comentarios') is-invalid @enderror" id="comentarios" placeholder="Comentarios">{{ old('comentarios', $evento?->comentarios) }}</textarea>
+            {!! $errors->first('comentarios', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        
         {{-- <div class="form-group mb-2 mb20">
             <label for="id_usuario" class="form-label">{{ __('Id Usuario') }}</label>
             <input type="text" name="id_usuario" class="form-control @error('id_usuario') is-invalid @enderror" value="{{ old('id_usuario', $evento?->id_usuario) }}" id="id_usuario" placeholder="Id Usuario">
@@ -64,11 +69,11 @@
         </div> --}}
 
         <div class="form-group mb-2 mb20">
-            <label for="id_usuario" class="form-label">{{ __('Id Usuario') }}</label>
+            <label for="id_usuario" class="form-label">{{ __('Usuario') }}</label>
             <select name="id_usuario" class="form-control @error('id_usuario') is-invalid @enderror" id="id_usuario">
-                @foreach($usuarios as $usuarioId => $usuarioNombre)
+                @foreach($usuarios as $usuarioId => $usuario)
                     <option value="{{ $usuarioId }}" {{ old('id_usuario', $evento->id_usuario ?? null) == $usuarioId ? 'selected' : '' }}>
-                        {{ $usuarioNombre }}
+                        {{ $usuario->name }} {{ $usuario->lastnames }}
                     </option>
                 @endforeach
             </select>
@@ -76,7 +81,7 @@
         </div>
         
         <div class="form-group mb-2 mb20">
-            <label for="id_salon" class="form-label">{{ __('Id Salon') }}</label>
+            <label for="id_salon" class="form-label">{{ __('Salon') }}</label>
             <select name="id_salon" class="form-control @error('id_salon') is-invalid @enderror" id="id_salon">
                 @foreach($salones as $salonId => $salon)
                     <option value="{{ $salonId }}" {{ old('id_salon', $evento->id_salon ?? null) == $salonId ? 'selected' : '' }}>

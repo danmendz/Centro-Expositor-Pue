@@ -12,11 +12,6 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @can('acceder-admin') 
-                        <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
-                            {{ __('Usuarios') }}
-                        </x-nav-link>
-                    @endcan
 
                     @can('acceder-cliente')
                         <x-nav-link :href="route('my-events')" :active="request()->routeIs('my-events')">
@@ -81,12 +76,6 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-
-            @can('acceder-admin')
-                <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
-                    {{ __('Usuarios') }}
-                </x-responsive-nav-link>
-            @endcan
 
             @can('acceder-cliente')
                 <x-responsive-nav-link :href="route('my-events')" :active="request()->routeIs('my-events')">

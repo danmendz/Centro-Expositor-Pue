@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Evento;
+use App\Models\Salon;
 use App\Http\Requests\AreaRequest;
 
 /**
@@ -28,7 +30,9 @@ class AreaController extends Controller
     public function create()
     {
         $area = new Area();
-        return view('admin.area.create', compact('area'));
+        $eventos = Evento::all();
+        $salones = Salon::all();
+        return view('admin.area.create', compact('area', 'eventos', 'salones'));
     }
 
     /**
@@ -58,8 +62,9 @@ class AreaController extends Controller
     public function edit($id)
     {
         $area = Area::find($id);
-
-        return view('admin.area.edit', compact('area'));
+        $eventos = Evento::all();
+        $salones = Salon::all();
+        return view('admin.area.edit', compact('area', 'eventos', 'salones'));
     }
 
     /**

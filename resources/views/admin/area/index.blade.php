@@ -38,8 +38,8 @@
                                         
 										<th>Nombre</th>
 										<th>Capacidad</th>
-										<th>Id Evento</th>
-										<th>Id Salon</th>
+										<th>Evento</th>
+										<th>Salon</th>
 
                                         <th></th>
                                     </tr>
@@ -51,8 +51,8 @@
                                             
 											<td>{{ $area->nombre }}</td>
 											<td>{{ $area->capacidad }}</td>
-											<td>{{ $area->id_evento }}</td>
-											<td>{{ $area->id_salon }}</td>
+											<td>{{ $area->evento?->nombre }}</td>
+											<td>{{ $area->salon?->nombre }}</td>
 
                                             <td>
                                                 <form action="{{ route('areas.destroy',$area->id) }}" method="POST">

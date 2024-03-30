@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('template_title')
-    Evento
+    Reserva
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Evento') }}
+                                {{ __('Reserva') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('eventos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('reservas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,44 +36,24 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Nombre</th>
-										<th>Tipo</th>
-										<th>Asistentes</th>
-										<th>Acceso</th>
-										<th>Comentarios</th>
-										<th>Fecha Inicio</th>
-										<th>Fecha Fin</th>
-										<th>Hora Inicio</th>
-										<th>Hora Fin</th>
+										<th>Evento</th>
 										<th>Estatus</th>
-										<th>Usuario</th>
-										<th>Salon</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($eventos as $evento)
+                                    @foreach ($reservas as $reserva)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $evento->nombre }}</td>
-											<td>{{ $evento->tipo }}</td>
-											<td>{{ $evento->asistentes }}</td>
-											<td>{{ $evento->acceso }}</td>
-											<td>{{ $evento->comentarios }}</td>
-											<td>{{ $evento->fecha_inicio }}</td>
-											<td>{{ $evento->fecha_fin }}</td>
-											<td>{{ $evento->hora_inicio }}</td>
-											<td>{{ $evento->hora_fin }}</td>
-											<td>{{ $evento->estatus }}</td>
-											<td>{{ $evento->user->name }}</td>
-											<td>{{ $evento->salon->name }}</td>
+											<td>{{ $reserva->id_evento }}</td>
+											<td>{{ $reserva->estatus }}</td>
 
                                             <td>
-                                                <form action="{{ route('eventos.destroy',$evento->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('eventos.show',$evento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('eventos.edit',$evento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('reservas.destroy',$reserva->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('reservas.show',$reserva->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('reservas.edit',$reserva->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -86,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $eventos->links() !!}
+                {!! $reservas->links() !!}
             </div>
         </div>
     </div>

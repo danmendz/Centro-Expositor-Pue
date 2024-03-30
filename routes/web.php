@@ -7,6 +7,8 @@ use App\Http\Controllers\SalonController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\CajonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,39 +40,35 @@ Route::middleware('auth')->group(function () {
             return view('admin.index');
         })->name('admin.index');
 
-        // Route::get('users', function () {
-        //     return view('admin.usuario.usuarios');
-        // })->name('users');
-
         Route::resource('salons', SalonController::class);
         Route::resource('users', UserController::class);
         Route::resource('eventos', EventoController::class);
         Route::resource('areas', AreaController::class);
-        // Route::get('salones', function () {
-        //     return view('admin.salon.salones');
-        // })->name('salones');
+        Route::resource('reservas', ReservaController::class);
+        Route::resource('cajons', CajonController::class);
     });
 
     // Cliente routes
     Route::middleware('can:acceder-cliente')->group(function () {
-        Route::get('my-events', function () {
-            return view('cliente.eventos');
-        })->name('my-events');
-        
         Route::get('/cliente/index', function () {
             return view('cliente.index');
         })->name('cliente.index');
+
+        Route::get('my-events', function () {
+            return view('cliente.eventos');
+        })->name('my-events');
     });
 
     // Usuario routes
     Route::middleware('can:acceder-usuario')->group(function () {
+        Route::get('/usuario/index', function () {
+            return view('usuario.index');
+        })->name('usuario.index');
+        
         Route::get('events', function () {
             return view('usuario.eventos');
         })->name('events');
 
-        Route::get('/usuario/index', function () {
-            return view('usuario.index');
-        })->name('usuario.index');
     });
 });
 

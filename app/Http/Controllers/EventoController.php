@@ -30,7 +30,7 @@ class EventoController extends Controller
     public function create()
     {
         $evento = new Evento();
-        $usuarios = User::pluck('name', 'id');
+        $usuarios = User::all();
         $salones = Salon::all();
         return view('admin.evento.create', compact('evento', 'usuarios', 'salones'));
     }
