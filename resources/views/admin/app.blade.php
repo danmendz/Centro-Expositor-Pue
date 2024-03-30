@@ -56,23 +56,48 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="{{ route('users.index') }}">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Usuarios</span>
+                    <span>Usuarios</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('salons.index') }}">
+                    <i class="fas fa-hotel"></i>
+                    <span>Salones</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvent"
+                    aria-expanded="true" aria-controls="collapseEvent">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Eventos</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseEvent" class="collapse" aria-labelledby="headingEvent" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrar:</h6>
-                        <a class="collapse-item" href="{{ route('users') }}">Ver</a>
-                        <a class="collapse-item" href="cards.html">Agregrar</a>
-                        <a class="collapse-item" href="cards.html">Actualizar</a>
-                        <a class="collapse-item" href="cards.html">Eliminar</a>
+                        <a class="collapse-item" href="{{ route('eventos.index') }}">Eventos</a>
+                        <a class="collapse-item" href="cards.html">Reservas</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEs"
+                    aria-expanded="true" aria-controls="collapseEs">
+                    <i class="fas fa-car"></i>
+                    <span>Estacionamiento</span>
+                </a>
+                <div id="collapseEs" class="collapse" aria-labelledby="headingEs" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Administrar:</h6>
+                        <a class="collapse-item" href="{{ route('areas.index') }}">Areas</a>
+                        <a class="collapse-item" href="cards.html">Cajones</a>
+                        <a class="collapse-item" href="cards.html">Reservas</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            {{-- <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -83,13 +108,13 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrar:</h6>
-                        <a class="collapse-item" href="{{ route('salones') }}">Ver</a>
+                        <a class="collapse-item" href="{{ route('salons.index') }}">Ver</a>
                         <a class="collapse-item" href="utilities-border.html">Agregrar</a>
                         <a class="collapse-item" href="utilities-animation.html">Actualizar</a>
                         <a class="collapse-item" href="utilities-other.html">Eliminar</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider">

@@ -43,8 +43,10 @@
                             <a href="{{ route('admin.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Mi panel</a>
                         @elseif(auth()->user()->role === 2)
                             <a href="{{ route('cliente.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Mi panel</a>
-                        @else
+                        @elseif(auth()->user()->role === 3)
                             <a href="{{ route('usuario.index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Mi panel</a>
+                        @else
+                            <a href="{{ route('page-index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Mi panel</a>
                         @endif
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Iniciar sesión</a>

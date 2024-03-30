@@ -8,10 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('eventos', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -27,18 +25,16 @@ return new class extends Migration
             $table->enum('estatus', ['finalizado', 'cancelado', 'iniciado', 'reservado', 'aprobado'])->default('reservado');
             $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_salon');
-            $table->foreign('id_usuario')->references('id')->on('users');
-            $table->foreign('id_salon')->references('id')->on('salons');
+            $table->foreign('id_usuario')->references('id')->on('users'); // Corregido el nombre de la tabla de usuarios
+            $table->foreign('id_salon')->references('id')->on('salons'); // Definida la llave foránea
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('eventos');
     }

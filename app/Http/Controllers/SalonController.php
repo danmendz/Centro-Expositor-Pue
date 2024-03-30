@@ -18,7 +18,7 @@ class SalonController extends Controller
     {
         $salons = Salon::paginate();
 
-        return view('salon.index', compact('salons'))
+        return view('admin.salon.index', compact('salons'))
             ->with('i', (request()->input('page', 1) - 1) * $salons->perPage());
     }
 
@@ -28,7 +28,7 @@ class SalonController extends Controller
     public function create()
     {
         $salon = new Salon();
-        return view('salon.create', compact('salon'));
+        return view('admin.salon.create', compact('salon'));
     }
 
     /**
@@ -49,7 +49,7 @@ class SalonController extends Controller
     {
         $salon = Salon::find($id);
 
-        return view('salon.show', compact('salon'));
+        return view('admin.salon.show', compact('salon'));
     }
 
     /**
@@ -59,7 +59,7 @@ class SalonController extends Controller
     {
         $salon = Salon::find($id);
 
-        return view('salon.edit', compact('salon'));
+        return view('admin.salon.edit', compact('salon'));
     }
 
     /**

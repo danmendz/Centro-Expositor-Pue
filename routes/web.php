@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\SalonController;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,13 +38,17 @@ Route::middleware('auth')->group(function () {
             return view('admin.index');
         })->name('admin.index');
 
-        Route::get('users', function () {
-            return view('admin.usuario.usuarios');
-        })->name('users');
+        // Route::get('users', function () {
+        //     return view('admin.usuario.usuarios');
+        // })->name('users');
 
-        Route::get('salones', function () {
-            return view('admin.salon.salones');
-        })->name('salones');
+        Route::resource('salons', SalonController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('eventos', EventoController::class);
+        Route::resource('areas', AreaController::class);
+        // Route::get('salones', function () {
+        //     return view('admin.salon.salones');
+        // })->name('salones');
     });
 
     // Cliente routes
@@ -63,34 +72,6 @@ Route::middleware('auth')->group(function () {
             return view('usuario.index');
         })->name('usuario.index');
     });
-
-    // // admin
-    // Route::get('users', function () { 
-    //     Gate::authorize('see-users'); 
-    //     return view('admin.users');
-    // })->name('users');
-
-    // Route::get('/admin/index', function () {
-    //     Gate::authorize('admin-index'); 
-    //     return view('admin.index');
-    // })->name('admin.index');
-    
-    // // cliente
-    // Route::get('events', function () {
-    //     Gate::authorize('see-events'); 
-    //     return view('cliente.events');
-    // })->name('events');
-
-    // Route::get('/cliente/index', function () {
-    //     Gate::authorize('cliente-index'); 
-    //     return view('cliente.index');
-    // })->name('cliente.index');
-
-    // // usuario
-    // Route::get('/usuario/index', function () {
-    //     Gate::authorize('usuario-index'); 
-    //     return view('usuario.index');
-    // })->name('usuario.index');
 });
 
 require __DIR__.'/auth.php';

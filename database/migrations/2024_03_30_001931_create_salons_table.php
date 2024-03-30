@@ -8,17 +8,15 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('salons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 30)->unique();
             $table->integer('capacidad');
-            $table->decimal('precio', 10, 2);
-            $table->decimal('tamano', 10, 3);
+            $table->double('precio', 10, 2);
+            $table->double('tamano', 10, 3);
             $table->string('direccion', 40);
             $table->enum('estatus', ['ocupado', 'disponible', 'remodelacion'])->default('disponible');
             $table->timestamps();
@@ -27,10 +25,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('salons');
     }
