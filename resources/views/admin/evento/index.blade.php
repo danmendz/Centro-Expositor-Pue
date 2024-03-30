@@ -67,8 +67,8 @@
 											<td>{{ $evento->hora_inicio }}</td>
 											<td>{{ $evento->hora_fin }}</td>
 											<td>{{ $evento->estatus }}</td>
-											<td>{{ $evento->id_usuario }}</td>
-											<td>{{ $evento->id_salon }}</td>
+											<td>{{ $evento->user->name }}</td>
+											<td>{{ $evento->salon->name }}</td>
 
                                             <td>
                                                 <form action="{{ route('eventos.destroy',$evento->id) }}" method="POST">

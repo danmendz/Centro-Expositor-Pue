@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use App\Models\User;
+use App\Models\Salon;
 use App\Http\Requests\EventoRequest;
 
 /**
@@ -28,7 +30,9 @@ class EventoController extends Controller
     public function create()
     {
         $evento = new Evento();
-        return view('admin.evento.create', compact('evento'));
+        $usuarios = User::pluck('name', 'id');
+        $salones = Salon::all();
+        return view('admin.evento.create', compact('evento', 'usuarios', 'salones'));
     }
 
     /**
