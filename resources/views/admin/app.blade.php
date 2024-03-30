@@ -77,6 +77,7 @@
                         <h6 class="collapse-header">Administrar:</h6>
                         <a class="collapse-item" href="{{ route('eventos.index') }}">Eventos</a>
                         <a class="collapse-item" href="{{ route('reservas.index') }}">Reservas</a>
+                        <a class="collapse-item" href="{{ route('invitados.index') }}">Invitados</a>
                     </div>
                 </div>
             </li>
@@ -92,7 +93,7 @@
                         <h6 class="collapse-header">Administrar:</h6>
                         <a class="collapse-item" href="{{ route('areas.index') }}">Areas</a>
                         <a class="collapse-item" href="{{ route('cajons.index') }}">Cajones</a>
-                        <a class="collapse-item" href="cards.html">Reservas</a>
+                        <a class="collapse-item" href="{{ route('reservacion-cajons.index') }}">Reservas</a>
                     </div>
                 </div>
             </li>
@@ -126,8 +127,8 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fa-solid fa-square-poll-vertical"></i>
+                <a class="nav-link" href="{{ route('reportes-index') }}">
+                    <i class="fas fa-chart-pie"></i>
                     <span>Reportes</span></a>
             </li>
 

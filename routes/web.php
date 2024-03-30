@@ -9,6 +9,8 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\CajonController;
+use App\Http\Controllers\InvitadoController;
+use App\Http\Controllers\ReservacionCajonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('areas', AreaController::class);
         Route::resource('reservas', ReservaController::class);
         Route::resource('cajons', CajonController::class);
+        Route::resource('reservacion-cajons', ReservacionCajonController::class);
+        Route::resource('invitados', InvitadoController::class);
+
+        Route::get('reportes', function () {
+            return view('admin.reporte.index');
+        })->name('reportes-index');
     });
 
     // Cliente routes
