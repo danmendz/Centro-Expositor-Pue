@@ -61,10 +61,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/cliente/index', function () {
             return view('cliente.index');
         })->name('cliente.index');
-
-        Route::get('my-events', function () {
-            return view('cliente.eventos');
-        })->name('my-events');
     });
 
     // Usuario routes
@@ -72,11 +68,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/usuario/index', function () {
             return view('usuario.index');
         })->name('usuario.index');
-        
-        Route::get('events', function () {
-            return view('usuario.eventos');
-        })->name('events');
-
     });
 });
 
