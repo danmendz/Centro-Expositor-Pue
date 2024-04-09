@@ -22,11 +22,6 @@
             {!! $errors->first('acceso', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="comentarios" class="form-label">{{ __('Comentarios') }}</label>
-            <input type="text" name="comentarios" class="form-control @error('comentarios') is-invalid @enderror" value="{{ old('comentarios', $evento?->comentarios) }}" id="comentarios" placeholder="Comentarios">
-            {!! $errors->first('comentarios', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
-        <div class="form-group mb-2 mb20">
             <label for="fecha_inicio" class="form-label">{{ __('Fecha Inicio') }}</label>
             <input type="date" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{ old('fecha_inicio', $evento?->fecha_inicio) }}" id="fecha_inicio" placeholder="Fecha Inicio">
             {!! $errors->first('fecha_inicio', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
@@ -51,13 +46,8 @@
             <input type="text" name="estatus" class="form-control @error('estatus') is-invalid @enderror" value="{{ old('estatus', $evento?->estatus) }}" id="estatus" placeholder="Estatus">
             {!! $errors->first('estatus', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
-        <div class="form-group mb-2 mb20">
-            <label for="comentarios" class="form-label">{{ __('Comentarios') }}</label>
-            <textarea name="comentarios" class="form-control @error('comentarios') is-invalid @enderror" id="comentarios" placeholder="Comentarios">{{ old('comentarios', $evento?->comentarios) }}</textarea>
-            {!! $errors->first('comentarios', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
         
-        {{-- <div class="form-group mb-2 mb20">
+        <div class="form-group mb-2 mb20">
             <label for="id_usuario" class="form-label">{{ __('Id Usuario') }}</label>
             <input type="text" name="id_usuario" class="form-control @error('id_usuario') is-invalid @enderror" value="{{ old('id_usuario', $evento?->id_usuario) }}" id="id_usuario" placeholder="Id Usuario">
             {!! $errors->first('id_usuario', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
@@ -66,30 +56,11 @@
             <label for="id_salon" class="form-label">{{ __('Id Salon') }}</label>
             <input type="text" name="id_salon" class="form-control @error('id_salon') is-invalid @enderror" value="{{ old('id_salon', $evento?->id_salon) }}" id="id_salon" placeholder="Id Salon">
             {!! $errors->first('id_salon', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div> --}}
-
-        <div class="form-group mb-2 mb20">
-            <label for="id_usuario" class="form-label">{{ __('Usuario') }}</label>
-            <select name="id_usuario" class="form-control @error('id_usuario') is-invalid @enderror" id="id_usuario">
-                @foreach($usuarios as $usuarioId => $usuario)
-                    <option value="{{ $usuarioId }}" {{ old('id_usuario', $evento->id_usuario ?? null) == $usuarioId ? 'selected' : '' }}>
-                        {{ $usuario->name }} {{ $usuario->lastnames }}
-                    </option>
-                @endforeach
-            </select>
-            {!! $errors->first('id_usuario', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
-        
         <div class="form-group mb-2 mb20">
-            <label for="id_salon" class="form-label">{{ __('Salon') }}</label>
-            <select name="id_salon" class="form-control @error('id_salon') is-invalid @enderror" id="id_salon">
-                @foreach($salones as $salonId => $salon)
-                    <option value="{{ $salonId }}" {{ old('id_salon', $evento->id_salon ?? null) == $salonId ? 'selected' : '' }}>
-                        {{ $salon->nombre }} (Capacidad: {{ $salon->capacidad }})
-                    </option>
-                @endforeach
-            </select>
-            {!! $errors->first('id_salon', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="comentarios" class="form-label">{{ __('Comentarios') }}</label>
+            <textarea name="comentarios" class="form-control @error('comentarios') is-invalid @enderror" id="comentarios" placeholder="Comentarios">{{ old('comentarios', $evento?->comentarios) }}</textarea>
+            {!! $errors->first('comentarios', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>            
 
     </div>

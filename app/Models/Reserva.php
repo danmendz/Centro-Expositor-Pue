@@ -38,6 +38,13 @@ class Reserva extends Model
     {
         return $this->belongsTo(\App\Models\Evento::class, 'id_evento', 'id');
     }
+
+    public function insertaRegistro($idEvento)
+    {
+        $reserva = new Reserva();
+        $reserva->id_evento = $idEvento;
+        $reserva->save();
+    }
     
 
 }

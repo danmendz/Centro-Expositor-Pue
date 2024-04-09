@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserva;
+use App\Models\Area;
 use App\Models\Evento;
 use App\Http\Requests\ReservaRequest;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ReservaController
@@ -82,4 +84,23 @@ class ReservaController extends Controller
         return redirect()->route('reservas.index')
             ->with('success', 'Reserva deleted successfully');
     }
+
+    public function aprobarEvento($idEvento)
+    {
+        DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
+
+        $area = new Area();
+        $area->asignarArea($idEvento);
+
+        return redirect()->route('reservas.index')
+            ->with('success', 'Reserva approved successfully');
+    }
+
+    /**
+     * metodos para cliente
+     */
+
+     /**
+     * metodos para usuario
+     */
 }

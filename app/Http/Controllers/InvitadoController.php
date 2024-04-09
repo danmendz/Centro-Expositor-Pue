@@ -80,4 +80,12 @@ class InvitadoController extends Controller
         return redirect()->route('invitados.index')
             ->with('success', 'Invitado deleted successfully');
     }
+
+    /**
+     * metodos para cliente
+     */
+
+     /**
+     * metodos para usuario
+     */
 }

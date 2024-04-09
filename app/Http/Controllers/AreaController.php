@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Evento;
 use App\Models\Salon;
 use App\Http\Requests\AreaRequest;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AreaController
@@ -21,6 +22,14 @@ class AreaController extends Controller
         $areas = Area::paginate();
 
         return view('admin.area.index', compact('areas'))
+            ->with('i', (request()->input('page', 1) - 1) * $areas->perPage());
+    }
+
+    public function accesoArea()
+    {
+        $areas = Area::paginate();
+
+        return view('cliente.area.index', compact('areas'))
             ->with('i', (request()->input('page', 1) - 1) * $areas->perPage());
     }
 
@@ -40,10 +49,20 @@ class AreaController extends Controller
      */
     public function store(AreaRequest $request)
     {
-        Area::create($request->validated());
-
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'capacidad' => 'required',
+            'id_evento' => 'nullable',
+            'id_salon' => 'nullable', 
+        ]);
+        Area::create($request->all());
+        
         return redirect()->route('areas.index')
-            ->with('success', 'Area created successfully.');
+        ->with('success', 'Area created successfully.');
+
+        // Area::create($request->validated());
+        // return redirect()->route('areas.index')
+        //     ->with('success', 'Area created successfully.');
     }
 
     /**
@@ -72,10 +91,21 @@ class AreaController extends Controller
      */
     public function update(AreaRequest $request, Area $area)
     {
-        $area->update($request->validated());
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'capacidad' => 'required',
+            'id_evento' => 'nullable',
+            'id_salon' => 'nullable', 
+        ]);
+
+        $area->update($request->all());
 
         return redirect()->route('areas.index')
             ->with('success', 'Area updated successfully');
+
+        // $area->update($request->validated());
+        // return redirect()->route('areas.index')
+        //     ->with('success', 'Area updated successfully');
     }
 
     public function destroy($id)
@@ -85,4 +115,29 @@ class AreaController extends Controller
         return redirect()->route('areas.index')
             ->with('success', 'Area deleted successfully');
     }
+
+    /**
+     * metodos para cliente
+     */
+
+    function listarAsignadas() {
+        $idUsuario = auth()->user()->id;
+
+        // Obtener los IDs de los eventos asignados al usuario
+        $eventosIds = Evento::where('id_usuario', $idUsuario)->pluck('id');
+
+        // Obtener las áreas asociadas a los eventos del usuario
+        $areas = DB::table('areas')
+                    ->whereIn('id_evento', $eventosIds)
+                    ->select('areas.*')
+                    ->distinct()
+                    ->get();
+
+        return view('cliente.area.asignadas', compact('areas'));
+    }
+
+
+     /**
+     * metodos para usuario
+     */
 }

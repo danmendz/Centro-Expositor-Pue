@@ -123,15 +123,15 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('mis.eventos', ['id' => Auth::id()])">
                                         {{ __('Mis eventos') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('autorizados.eventos')">
                                         {{ __('Eventos autorizados') }}
                                     </x-dropdown-link>
                                     
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('lista.eventos')">
                                         {{ __('Eventos disponibles') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -154,15 +154,15 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('asignadas.areas')">
                                         {{ __('Areas asignadas') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('acceso.area')">
                                         {{ __('Areas de acceso') }}
                                     </x-dropdown-link>
                                     
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('reservados.cajones')">
                                         {{ __('Cajones reservados') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -185,11 +185,11 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('reservas.eventos')">
                                         {{ __('Reservas de eventos') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('reservas.estacionamiento')">
                                         {{ __('Reservas de estacionamiento') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -212,11 +212,11 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('accesos.pendientes')">
                                         {{ __('Pendientes') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('accesos.aprobados')">
                                         {{ __('Aprobados') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -229,6 +229,10 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <x-responsive-nav-link :href="route('reservar.evento')" :active="request()->routeIs('reservar.evento')">
+                    {{ __('Reservar evento') }}
+                </x-responsive-nav-link>
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">

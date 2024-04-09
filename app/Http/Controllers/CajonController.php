@@ -80,4 +80,12 @@ class CajonController extends Controller
         return redirect()->route('cajons.index')
             ->with('success', 'Cajon deleted successfully');
     }
+
+    /**
+     * metodos para cliente
+     */
+
+     /**
+     * metodos para usuario
+     */
 }

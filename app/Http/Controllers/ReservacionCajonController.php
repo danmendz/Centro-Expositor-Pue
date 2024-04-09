@@ -80,4 +80,12 @@ class ReservacionCajonController extends Controller
         return redirect()->route('reservacion-cajons.index')
             ->with('success', 'ReservacionCajon deleted successfully');
     }
+
+    /**
+     * metodos para cliente
+     */
+
+     /**
+     * metodos para usuario
+     */
 }
