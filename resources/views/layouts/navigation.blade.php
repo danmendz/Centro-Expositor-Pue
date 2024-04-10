@@ -123,7 +123,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('mis.eventos', ['id' => Auth::id()])">
+                                    <x-dropdown-link :href="route('mis.eventos')">
                                         {{ __('Mis eventos') }}
                                     </x-dropdown-link>
 
@@ -185,7 +185,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('reservas.eventos')">
+                                    <x-dropdown-link :href="route('mis.reservas')">
                                         {{ __('Reservas de eventos') }}
                                     </x-dropdown-link>
 

@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Evento;
 use App\Http\Requests\ReservaRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ReservaController
@@ -99,7 +100,17 @@ class ReservaController extends Controller
     /**
      * metodos para cliente
      */
+    public function misReservas()
+    {
+        $id_usuario = Auth::id();
 
+        $eventos = Evento::with(['reserva', 'salon'])
+            ->where('id_usuario', $id_usuario)
+            ->has('reserva')
+            ->get();
+
+        return view('cliente.reserva.mis-reservas', compact('eventos'));
+    }
      /**
      * metodos para usuario
      */

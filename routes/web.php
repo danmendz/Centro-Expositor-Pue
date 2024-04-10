@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('eventos', EventoController::class);
+    Route::resource('reservas', ReservaController::class);
+
 
     // Admin routes
     Route::middleware('can:acceder-admin')->group(function () {
@@ -47,7 +49,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('salons', SalonController::class);
         Route::resource('users', UserController::class);
         Route::resource('areas', AreaController::class);
-        Route::resource('reservas', ReservaController::class);
         Route::resource('cajons', CajonController::class);
         Route::resource('reservacion-cajons', ReservacionCajonController::class);
         Route::resource('invitados', InvitadoController::class);
@@ -72,13 +73,13 @@ Route::middleware('auth')->group(function () {
         Route::get('asignada/areas', [AreaController::class, 'listarAsignadas'])->name('asignadas.areas');
         Route::get('acceso/area', [AreaController::class, 'accesoArea'])->name('acceso.area');
         Route::get('reservado/cajones', [AreaController::class, 'accesoArea'])->name('reservados.cajones');
-        Route::get('reservas/eventos', [AreaController::class, 'accesoArea'])->name('reservas.eventos');
+        Route::get('mis-reservas', [ReservaController::class, 'misReservas'])->name('mis.reservas');
         Route::get('reservas/cajones', [AreaController::class, 'accesoArea'])->name('reservas.estacionamiento');
         Route::get('acceso/pendientes', [AreaController::class, 'accesoArea'])->name('accesos.pendientes');
         Route::get('acceso/aprobados', [AreaController::class, 'accesoArea'])->name('accesos.aprobados');
         Route::get('reserva/evento', [EventoController::class, 'reservar'])->name('reservar.evento');
         Route::post('insertar', [EventoController::class, 'inserta'])->name('eventos.insertar');
-        Route::get('mis-eventos/{id}', [EventoController::class, 'misEventos'])->name('mis.eventos');
+        Route::get('mis-eventos/', [EventoController::class, 'misEventos'])->name('mis.eventos');
     });
 
 

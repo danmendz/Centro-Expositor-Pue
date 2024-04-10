@@ -20,9 +20,18 @@
                                     </div>
                                     <div class="form-group mb-2 mb20">
                                         <label for="tipo" class="form-label">{{ __('Tipo') }}</label>
-                                        <input type="text" name="tipo" class="form-control @error('tipo') is-invalid @enderror" value="{{ old('tipo', $evento?->tipo) }}" id="tipo" placeholder="Tipo">
+                                        <select name="tipo" class="form-control @error('tipo') is-invalid @enderror" id="tipo">
+                                            <option value="social">Social</option>
+                                            <option value="deportivo">Deportivo</option>
+                                            <option value="cultural">Cultural</option>
+                                            <option value="convencion">Convención</option>
+                                            <option value="academico">Académico</option>
+                                            <option value="religioso">Religioso</option>
+                                            <option value="politico">Político</option>
+                                        </select>
                                         {!! $errors->first('tipo', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                                     </div>
+                                    
                                     <div class="form-group mb-2 mb20">
                                         <label for="asistentes" class="form-label">{{ __('Asistentes') }}</label>
                                         <input type="text" name="asistentes" class="form-control @error('asistentes') is-invalid @enderror" value="{{ old('asistentes', $evento?->asistentes) }}" id="asistentes" placeholder="Asistentes">
@@ -30,9 +39,13 @@
                                     </div>
                                     <div class="form-group mb-2 mb20">
                                         <label for="acceso" class="form-label">{{ __('Acceso') }}</label>
-                                        <input type="text" name="acceso" class="form-control @error('acceso') is-invalid @enderror" value="{{ old('acceso', $evento?->acceso) }}" id="acceso" placeholder="Acceso">
+                                        <select name="acceso" class="form-control @error('acceso') is-invalid @enderror" id="acceso">
+                                            <option value="publico">Público</option>
+                                            <option value="privado">Privado</option>
+                                        </select>
                                         {!! $errors->first('acceso', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                                     </div>
+                                    
                                     <div class="form-group mb-2 mb20">
                                         <label for="fecha_inicio" class="form-label">{{ __('Fecha Inicio') }}</label>
                                         <input type="date" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{ old('fecha_inicio', $evento?->fecha_inicio) }}" id="fecha_inicio" placeholder="Fecha Inicio">
@@ -72,12 +85,12 @@
                                         </select>
                                         {!! $errors->first('id_salon', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                                     </div>
-
+                                    
                                     <div class="form-group mb-2 mb20">
                                         <label for="comentarios" class="form-label">{{ __('Comentarios') }}</label>
                                         <textarea name="comentarios" class="form-control @error('comentarios') is-invalid @enderror" id="comentarios" placeholder="Comentarios">{{ old('comentarios', $evento?->comentarios) }}</textarea>
                                         {!! $errors->first('comentarios', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                                    </div>            
+                                    </div>
                             
                                 </div>
                                 <div class="col-md-12 mt20 mt-2">

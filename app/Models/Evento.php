@@ -67,5 +67,9 @@ class Evento extends Model
         return $this->hasMany(\App\Models\Area::class, 'id', 'id_evento');
     }
     
+    public function reserva()
+    {
+        return $this->hasOne(Reserva::class, 'id_evento');
+    }
 
 }

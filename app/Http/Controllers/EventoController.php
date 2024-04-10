@@ -36,7 +36,7 @@ class EventoController extends Controller
     {
         $evento = new Evento();
         $usuarios = User::all();
-        $salones = Salon::all();
+        $salones = Salon::where('estatus', 'disponible')->get();
         return view('admin.evento.create', compact('evento', 'usuarios', 'salones'));
     }
 
@@ -98,7 +98,9 @@ class EventoController extends Controller
      */
     public function eventosDisponibles()
     {
-        $eventos = Evento::where('acceso', 'publico')->paginate();
+        $eventos = Evento::where('acceso', 'publico')
+                ->where('estatus', 'aprobado')
+                ->paginate();
 
         return view('cliente.evento.index', compact('eventos'))
             ->with('i', (request()->input('page', 1) - 1) * $eventos->perPage());
@@ -126,7 +128,7 @@ class EventoController extends Controller
     public function reservar()
     {
         $evento = new Evento();
-        $salones = Salon::all();
+        $salones = Salon::where('estatus', 'disponible')->get();
         return view('cliente.evento.create', compact('evento', 'salones'));
     }
 
