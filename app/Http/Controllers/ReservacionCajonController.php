@@ -114,6 +114,31 @@ class ReservacionCajonController extends Controller
         }
     }
 
+    public function listarReservas()
+    {
+        $id_usuario = Auth::id();
+
+        $reservas = ReservacionCajon::where('id_usuario', $id_usuario)
+            ->get();
+        return view('cliente.reservacion-cajon.index', compact('reservas'));
+    }
+
+    public function cajonesReservados()
+    {
+        $id_usuario = Auth::id();
+
+        $cajones = ReservacionCajon::select('reservacion_cajons.id AS reserva_id', 'reservacion_cajons.fecha', 'reservacion_cajons.inicio', 'reservacion_cajons.fin', 'cajons.*', 'areas.id AS id_area', 'areas.nombre')
+            ->join('cajons', 'reservacion_cajons.id_cajon', '=', 'cajons.id')
+            ->join('areas', 'cajons.id_area', '=', 'areas.id')
+            ->where('reservacion_cajons.id_usuario', $id_usuario)
+            ->where('cajons.estatus', 2)
+            ->where('reservacion_cajons.estatus', 1)
+            // ->distinct()
+            ->get();
+
+        return view('cliente.reservacion-cajon.reservados', compact('cajones'));
+    }
+
      /**
      * metodos para usuario
      */

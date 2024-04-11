@@ -72,9 +72,9 @@ Route::middleware('auth')->group(function () {
         Route::get('disponible/eventos', [EventoController::class, 'eventosDisponibles'])->name('lista.eventos');
         Route::get('asignada/areas', [AreaController::class, 'listarAsignadas'])->name('asignadas.areas');
         Route::get('acceso/area', [AreaController::class, 'accesoArea'])->name('acceso.area');
-        Route::get('reservado/cajones', [AreaController::class, 'accesoArea'])->name('reservados.cajones');
+        Route::get('cajones-reservados', [ReservacionCajonController::class, 'cajonesReservados'])->name('reservados.cajones');
         Route::get('mis-reservas', [ReservaController::class, 'misReservas'])->name('mis.reservas');
-        Route::get('reservas/cajones', [AreaController::class, 'accesoArea'])->name('reservas.estacionamiento');
+        Route::get('reservas-cajones', [ReservacionCajonController::class, 'listarReservas'])->name('reservas.estacionamiento');
         Route::get('acceso/pendientes', [AreaController::class, 'accesoArea'])->name('accesos.pendientes');
         Route::get('acceso/aprobados', [AreaController::class, 'accesoArea'])->name('accesos.aprobados');
         Route::get('reserva/evento', [EventoController::class, 'reservar'])->name('reservar.evento');
