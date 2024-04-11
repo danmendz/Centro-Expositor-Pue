@@ -39,7 +39,7 @@
                                         {{ __('Eventos autorizados') }}
                                     </x-dropdown-link>
                                     
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('lista.eventos')">
                                         {{ __('Eventos disponibles') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -66,7 +66,7 @@
                                         {{ __('Areas de acceso') }}
                                     </x-dropdown-link>
                                     
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('reservados.cajones')">
                                         {{ __('Cajones reservados') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -89,11 +89,11 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('mis.reservas')">
                                         {{ __('Reservas de eventos') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('reservas.estacionamiento')">
                                         {{ __('Reservas de estacionamiento') }}
                                     </x-dropdown-link>
                                 </x-slot>

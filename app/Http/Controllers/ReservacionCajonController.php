@@ -117,15 +117,23 @@ class ReservacionCajonController extends Controller
     public function listarReservas()
     {
         $id_usuario = Auth::id();
+        $rol = Auth::user()->role;
 
         $reservas = ReservacionCajon::where('id_usuario', $id_usuario)
             ->get();
-        return view('cliente.reservacion-cajon.index', compact('reservas'));
+
+        if($rol == 2) {
+            return view('cliente.reservacion-cajon.index', compact('reservas'));
+
+        } else {
+            return view('usuario.reservacion-cajon.index', compact('reservas'));
+        }
     }
 
     public function cajonesReservados()
     {
         $id_usuario = Auth::id();
+        $rol = Auth::user()->role;
 
         $cajones = ReservacionCajon::select('reservacion_cajons.id AS reserva_id', 'reservacion_cajons.fecha', 'reservacion_cajons.inicio', 'reservacion_cajons.fin', 'cajons.*', 'areas.id AS id_area', 'areas.nombre')
             ->join('cajons', 'reservacion_cajons.id_cajon', '=', 'cajons.id')
@@ -135,8 +143,13 @@ class ReservacionCajonController extends Controller
             ->where('reservacion_cajons.estatus', 1)
             // ->distinct()
             ->get();
+        
+        if($rol == 2) {
+            return view('cliente.reservacion-cajon.reservados', compact('cajones'));
 
-        return view('cliente.reservacion-cajon.reservados', compact('cajones'));
+        } else {
+            return view('usuario.reservacion-cajon.reservados', compact('cajones'));
+        }
     }
 
      /**

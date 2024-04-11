@@ -103,13 +103,19 @@ class ReservaController extends Controller
     public function misReservas()
     {
         $id_usuario = Auth::id();
+        $rol = Auth::user()->role;
 
         $eventos = Evento::with(['reserva', 'salon'])
             ->where('id_usuario', $id_usuario)
             ->has('reserva')
             ->get();
 
-        return view('cliente.reserva.mis-reservas', compact('eventos'));
+        if($rol == 2) {
+            return view('cliente.reserva.mis-reservas', compact('eventos'));
+
+        } else {
+            return view('usuario.reserva.mis-reservas', compact('eventos'));
+        }
     }
      /**
      * metodos para usuario

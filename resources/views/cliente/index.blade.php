@@ -4,4 +4,9 @@
             {{ __('Cliente') }}
         </h2>
     </x-slot>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success m-4">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 </x-app-layout>

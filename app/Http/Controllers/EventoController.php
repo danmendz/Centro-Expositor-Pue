@@ -99,6 +99,7 @@ class EventoController extends Controller
     public function eventosDisponibles()
     {
         $id_usuario = Auth::id();
+        $rol = Auth::user()->role;
 
         // Obtener los IDs de los eventos asociados al cliente
         $eventos_ids = Evento::where('id_usuario', $id_usuario)
@@ -119,8 +120,15 @@ class EventoController extends Controller
                 ->get();
         }
 
-        // Retornar la vista con los datos de los eventos
-        return view('cliente.evento.index', compact('eventos'));
+        if($rol == 2) {
+            return view('cliente.evento.index', compact('eventos'));
+
+        } else {
+            return view('usuario.evento.index', compact('eventos'));
+        }
+
+        // // Retornar la vista con los datos de los eventos
+        // return view('cliente.evento.index', compact('eventos'));
     }
 
     public function mostrar()
@@ -143,20 +151,36 @@ class EventoController extends Controller
 
     public function inserta(EventoRequest $request)
     {
+        $rol = Auth::user()->role;
+
         $event = Evento::create($request->validated());
 
         $reserva = new Reserva();
         $reserva->insertaRegistro($event->id);
 
-        return redirect()->route('cliente.index')
+        if($rol == 2) {
+            return redirect()->route('cliente.index')
             ->with('success', 'Evento created successfully.');
+
+        } else {
+            return redirect()->route('usuario.index')
+            ->with('success', 'Evento created successfully.');
+        }
     }
 
     public function reservar()
     {
+        $rol = Auth::user()->role;
+
         $evento = new Evento();
         $salones = Salon::where('estatus', 'disponible')->get();
-        return view('cliente.evento.create', compact('evento', 'salones'));
+
+        if($rol == 2) {
+            return view('cliente.evento.create', compact('evento', 'salones'));
+
+        } else {
+            return view('usuario.evento.create', compact('evento', 'salones'));
+        }
     }
 
     public function misEventos()
