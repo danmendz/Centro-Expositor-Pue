@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ReservacionCajon;
 use App\Http\Requests\ReservacionCajonRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ReservacionCajonController
@@ -84,6 +85,34 @@ class ReservacionCajonController extends Controller
     /**
      * metodos para cliente
      */
+    public function crearReserva($id_cajon)
+    {
+        $reservacionCajon = new ReservacionCajon();
+        return view('cliente.reservacion-cajon.create', compact('reservacionCajon', 'id_cajon'));
+    }
+
+    public function reservarCajon(ReservacionCajonRequest $request)
+    {
+        $id_usuario = Auth::id();
+
+        $existingReservation = ReservacionCajon::where('id_usuario', $id_usuario)
+            ->where('id_cajon', $request->id_cajon)
+            ->where('inicio', $request->inicio)
+            ->where('fin', $request->fin)
+            ->exists();
+
+        // Si no existe una reservación, proceder con la creación de la nueva reservación
+        if (!$existingReservation) {
+            ReservacionCajon::create($request->validated());
+
+            return redirect()->route('asignadas.areas')
+                ->with('success', 'Cajón reservado correctamente.');
+        } else {
+            // Si ya existe una reservación, redirigir al usuario con un mensaje de error
+            return redirect()->route('asignadas.areas')
+                ->with('error', 'Ya tienes una reservación para este cajón.');
+        }
+    }
 
      /**
      * metodos para usuario

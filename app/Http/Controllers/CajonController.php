@@ -85,6 +85,13 @@ class CajonController extends Controller
      * metodos para cliente
      */
 
+     public function listar($idArea)
+     {
+         $cajones = Cajon::where('id_area', $idArea)->get();
+     
+         return view('cliente.cajon.index', compact('cajones'));
+     }     
+
      /**
      * metodos para usuario
      */

@@ -40,5 +40,9 @@ class Cajon extends Model
         return $this->belongsTo(\App\Models\Area::class, 'id_area', 'id');
     }
     
+    public function listar($idArea)
+    {
+        return $this->where('id_area', $idArea)->get();
+    }
 
 }

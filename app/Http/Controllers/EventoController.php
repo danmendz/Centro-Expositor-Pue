@@ -98,6 +98,33 @@ class EventoController extends Controller
      */
     public function eventosDisponibles()
     {
+        $id_usuario = Auth::id();
+
+        // Obtener los IDs de los eventos asociados al cliente
+        $eventos_ids = Evento::where('id_usuario', $id_usuario)
+            ->pluck('id')
+            ->toArray();
+
+        // Si hay eventos asociados al cliente
+        if (!empty($eventos_ids)) {
+            $eventos = Evento::with('user', 'salon')
+                ->whereNotIn('id', $eventos_ids)
+                ->where('estatus', 'aprobado')
+                // ->whereNotIn('estatus', ['cancelado', 'finalizado'])
+                ->get();
+        } else {
+            // Si no hay eventos asociados al cliente
+            $eventos = Evento::with('user', 'salon')
+                ->where('estatus', 'aprobado')
+                ->get();
+        }
+
+        // Retornar la vista con los datos de los eventos
+        return view('cliente.evento.index', compact('eventos'));
+    }
+
+    public function mostrar()
+    {
         $eventos = Evento::where('acceso', 'publico')
                 ->where('estatus', 'aprobado')
                 ->paginate();

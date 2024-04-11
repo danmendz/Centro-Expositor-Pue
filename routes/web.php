@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('eventos', EventoController::class);
     Route::resource('reservas', ReservaController::class);
+    Route::resource('reservacion-cajons', ReservacionCajonController::class);
 
 
     // Admin routes
@@ -50,7 +51,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('areas', AreaController::class);
         Route::resource('cajons', CajonController::class);
-        Route::resource('reservacion-cajons', ReservacionCajonController::class);
         Route::resource('invitados', InvitadoController::class);
 
         Route::get('reportes', function () {
@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
             return view('cliente.index');
         })->name('cliente.index');
         
-        Route::get('mis/eventos', [AreaController::class, 'accesoArea'])->name('mis.eventos');
+        Route::get('mis/eventos', [AreaController::class, 'accesoArea'])->name('eventos');
         Route::get('autorizado/eventos', [AreaController::class, 'accesoArea'])->name('autorizados.eventos');
         Route::get('disponible/eventos', [EventoController::class, 'eventosDisponibles'])->name('lista.eventos');
         Route::get('asignada/areas', [AreaController::class, 'listarAsignadas'])->name('asignadas.areas');
@@ -80,6 +80,9 @@ Route::middleware('auth')->group(function () {
         Route::get('reserva/evento', [EventoController::class, 'reservar'])->name('reservar.evento');
         Route::post('insertar', [EventoController::class, 'inserta'])->name('eventos.insertar');
         Route::get('mis-eventos/', [EventoController::class, 'misEventos'])->name('mis.eventos');
+        Route::get('/cajones/{id_area}', [CajonController::class, 'listar'])->name('listar.cajones');
+        Route::match(['get', 'post'], 'crear-reserva/{id_cajon}', [ReservacionCajonController::class, 'crearReserva'])->name('crear.reserva');
+        Route::post('reservar/cajon', [ReservacionCajonController::class, 'reservarCajon'])->name('reserva.cajon');
     });
 
 
