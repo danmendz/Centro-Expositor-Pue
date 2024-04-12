@@ -88,6 +88,17 @@ class ReservaController extends Controller
     public function aprobarEvento($idEvento)
     {
         try {
+            $results = DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
+            
+            foreach ($results as $result) {
+                var_dump($result);
+            }
+            
+        } catch (\Exception $e) {
+            die("Error: " . $e->getMessage());
+        }
+        
+        try {
             $reservar = DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
 
             if($reservar > 0) {
