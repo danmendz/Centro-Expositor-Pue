@@ -25,6 +25,7 @@ use App\Http\Controllers\LoginApiController;
 */
 Route::get('/obtener-usuario', [LoginApiController::class, 'obtenerUsuario']);
 Route::get('/obtener-eventos', [LoginApiController::class, 'obtenerEventos']);
+Route::put('/actualizar-estatus', [LoginApiController::class, 'actualizarEstatus']);
 
 Route::get('/', function () {
     return view('welcome');

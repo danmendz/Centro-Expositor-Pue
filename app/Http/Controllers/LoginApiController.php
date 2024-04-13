@@ -7,6 +7,7 @@ use App\Models\Evento;
 use App\Models\User;
 use App\Models\Area;
 use App\Models\Cajon;
+use Illuminate\Support\Facades\DB;
 
 class LoginApiController extends Controller
 {
@@ -37,7 +38,7 @@ class LoginApiController extends Controller
             return response()->json(['error' => 'Credenciales inválidas'], 403);
         }
 
-        // URL: http://localhost:8000/obtener-usuario-eventos?email=cliente@gmail.com&pass=password
+        // http://localhost:8000/obtener-usuario-eventos?email=cliente@gmail.com&pass=password
     }
 
     public function obtenerEventos(Request $request)
@@ -87,6 +88,29 @@ class LoginApiController extends Controller
             return response()->json(['error' => 'Eventos no encontrados'], 403);
         }
 
-        // URL: http://localhost:8000/obtener-usuario-eventos?email=cliente@gmail.com&pass=password
+        // http://localhost:8000/obtener-eventos?id=2
+    }
+
+    public function actualizarEstatus(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+            'estat' => 'required|integer',
+        ]);
+    
+        $idCajon = $request->input('id');
+        $estatus = $request->input('estat');
+            
+        try {
+            DB::statement("UPDATE cajons SET estatus = ? WHERE id = ?", [$estatus, $idCajon]);
+            
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'Se produjo un error al actualizar estatus: ' . $th->getMessage()], 500);
+        }        
+        // http://localhost:8000/actualizar-estatus
+        // {
+        //     "id": 2,
+        //     "estat": 1
+        // }
     }
 }
