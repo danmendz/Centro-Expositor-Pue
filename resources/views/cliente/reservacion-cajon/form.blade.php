@@ -1,36 +1,31 @@
-
-    <h1>Reservar cajon</h1>
-    <span><br></span>
-    <input type="hidden" name="id" value="0">
-    <input type="hidden" name="id_persona" value="{{ Auth::user()->id }}">
+<input type="hidden" name="estatus" value="0">
+    <input type="hidden" name="id_usuario" value="{{ Auth::user()->id }}">
     <input type="hidden" name="id_cajon" value="{{ $id_cajon }}">
 
-    <label class="control-label">Duración de la reserva:</label>
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="date" name="fecha" class="form-control" id="floatingInputGrid" required>
-                <label for="floatingInputGrid">Fecha de inicio</label>
+    <div class="mb-3">
+        <label class="form-label">Duración de la reserva:</label>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <label class="input-group-text" for="fecha"><i class="bi bi-calendar"></i> Fecha</label>
+                    <input type="date" name="fecha" class="form-control" id="fecha" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <label class="input-group-text" for="inicio"><i class="bi bi-clock"></i> Hora de inicio</label>
+                    <input type="time" name="inicio" class="form-control" id="inicio" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <label class="input-group-text" for="fin"><i class="bi bi-clock"></i> Hora final</label>
+                    <input type="time" name="fin" class="form-control" id="fin" required>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="time" name="inicio" class="form-control" id="floatingInputGrid" required>
-                <label for="floatingInputGrid">Hora de inicio</label>
-            </div>
-        </div>
-
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="time" name="fin" class="form-control" id="floatingInputGrid" required>
-                <label for="floatingInputGrid">Hora de finalización</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="button-container">
-        <button type="submit" class="btn btn-primary" role="button">Reservar</button>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary" style="background-color: #0b5ed7; border-color: white">Reservar</button>
     </div>

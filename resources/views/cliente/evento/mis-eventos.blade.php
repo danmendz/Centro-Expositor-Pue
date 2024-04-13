@@ -1,11 +1,15 @@
 <x-app-layout>
-    @foreach ($eventos as $evento)
-    <div>
-        <p>Nombre: {{ $evento->nombre }}</p>
-        <p>Tipo: {{ $evento->tipo }}</p>
-        <!-- Otros campos -->
-        <p>Salón: {{ $evento->salon->nombre }}</p>
-        <p>id: {{ $evento->salon->id }}</p>
+    <div class="container mt-4">
+        @foreach ($eventos as $evento)
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $evento->nombre }}</h5>
+                    <p class="card-text">Tipo: {{ $evento->tipo }}</p>
+                    <!-- Otros campos -->
+                    <p class="card-text">Salón: {{ $evento->salon->nombre }}</p>
+                    <p class="card-text">ID del salón: {{ $evento->salon->id }}</p>
+                </div>
+            </div>
+        @endforeach
     </div>
-@endforeach
 </x-app-layout>

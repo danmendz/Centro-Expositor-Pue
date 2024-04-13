@@ -88,14 +88,21 @@ class ReservaController extends Controller
 
     public function aprobarEvento($idEvento)
     {
-        DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
+        try {
+            DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
 
-        $area = new Area();
-        $area->asignarArea($idEvento);
+            $area = new Area();
+            $area->asignarArea($idEvento);
 
-        return redirect()->route('reservas.index')
-            ->with('success', 'Reserva approved successfully');
+            return redirect()->route('reservas.index')
+                ->with('success', 'Reserva aprobada exitosamente');
+            
+        } catch (\Exception $e) {
+            return redirect()->route('reservas.index')
+                ->with('error', 'Se produjo un error al aprobar la reserva: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * metodos para cliente

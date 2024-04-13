@@ -48,9 +48,12 @@ Route::middleware('auth')->group(function () {
     
     // Admin routes
     Route::middleware('can:acceder-admin')->group(function () {
-        Route::get('/admin/index', function () {
-            return view('admin.index');
-        })->name('admin.index');
+        
+        // Route::get('/admin/index', function () {
+        //     return view('admin.index');
+        // })->name('admin.index');
+
+        Route::get('/admin/index', [EventoController::class, 'eventos'])->name('admin.index');
 
         Route::resource('salons', SalonController::class);
         Route::resource('users', UserController::class);

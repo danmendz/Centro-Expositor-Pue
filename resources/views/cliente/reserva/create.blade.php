@@ -17,7 +17,7 @@
                         <form method="POST" action="{{ route('reservas.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('admin.reserva.form')
+                            @include('cliente.reserva.form')
 
                         </form>
                     </div>

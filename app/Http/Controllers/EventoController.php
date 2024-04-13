@@ -21,6 +21,13 @@ class EventoController extends Controller
     /**
      * metodos para administrador
      */
+    public function eventos()
+    {
+        $allEventos = Evento::where('estatus', 'aprobado')->get();
+
+        return view('admin.index', compact('allEventos'));
+    }
+
     public function index()
     {
         $eventos = Evento::paginate();
