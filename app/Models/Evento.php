@@ -72,4 +72,13 @@ class Evento extends Model
         return $this->hasOne(Reserva::class, 'id_evento');
     }
 
+    public static function obtenerEventosUsuario($id)
+    {
+        return Evento::select('eventos.*', 'salones.nombre AS salon_nombre')
+        ->join('salones', 'salones.id', '=', 'eventos.id_salon')
+        ->where('eventos.id_persona', $id)
+        ->where('eventos.estatus', 'aprobado')
+        ->get();
+    }
+
 }

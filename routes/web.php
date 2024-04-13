@@ -11,6 +11,7 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\CajonController;
 use App\Http\Controllers\InvitadoController;
 use App\Http\Controllers\ReservacionCajonController;
+use App\Http\Controllers\LoginApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\ReservacionCajonController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/obtener-usuario', [LoginApiController::class, 'obtenerUsuario']);
+Route::get('/obtener-eventos', [LoginApiController::class, 'obtenerEventos']);
 
 Route::get('/', function () {
     return view('welcome');

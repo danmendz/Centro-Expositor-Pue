@@ -72,4 +72,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function recuperaUsuario($email, $pass)
+    {
+        if (Auth::attempt(['email' => $email, 'password' => $pass])) {
+            // Si la autenticación es exitosa, devuelve el usuario autenticado
+            return Auth::user();
+        }      
+
+        return null;
+    }
+
 }
