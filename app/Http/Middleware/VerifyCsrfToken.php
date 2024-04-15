@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        'actualizar-estatus',
+        'aprobar-evento/{idEvento}',
     ];
 }

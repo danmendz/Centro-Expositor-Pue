@@ -25,15 +25,41 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
+        $this->registerPolicies();
 
-        Gate::define('see-users', fn(User $user) => 
-            $user->role == User::ROLE_ADMINISTRADOR
-        );
+        Gate::define('acceder-admin', function ($user) {
+            return $user->role === User::ROLE_ADMINISTRADOR;
+        });
+
+        Gate::define('acceder-cliente', function ($user) {
+            return $user->role === User::ROLE_CLIENTE;
+        });
+
+        Gate::define('acceder-usuario', function ($user) {
+            return $user->role === User::ROLE_USUARIO;
+        });
+
+        // // administrador
+        // Gate::define('see-users', fn(User $user) => 
+        //     $user->role == User::ROLE_ADMINISTRADOR
+        // );
+
+        // Gate::define('admin-index', fn(User $user) => 
+        //     $user->role == User::ROLE_ADMINISTRADOR
+        // );
  
-        Gate::define('see-events', fn(User $user) =>
-            $user->role == User::ROLE_CLIENTE
-        );
-        //
+        // // cliente
+        // Gate::define('see-events', fn(User $user) =>
+        //     $user->role == User::ROLE_CLIENTE
+        // );
+
+        // Gate::define('cliente-index', fn(User $user) => 
+        //     $user->role == User::ROLE_CLIENTE
+        // );
+
+        // //usuario
+        // Gate::define('usuario-index', fn(User $user) => 
+        //     $user->role == User::ROLE_USUARIO
+        // );
     }
 }

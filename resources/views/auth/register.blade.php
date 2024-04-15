@@ -9,6 +9,18 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <div>
+            <x-input-label for="lastnames" :value="__('Apellidos')" />
+            <x-text-input id="lastnames" class="block mt-1 w-full" type="text" name="lastnames" :value="old('lastnames')" required autofocus autocomplete="lastnames" />
+            <x-input-error :messages="$errors->get('lastnames')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="cellphone" :value="__('Teléfono')" />
+            <x-text-input id="cellphone" class="block mt-1 w-full" type="tel" name="cellphone" :value="old('cellphone')" required autofocus autocomplete="cellphone" />
+            <x-input-error :messages="$errors->get('cellphone')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
