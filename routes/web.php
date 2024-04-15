@@ -12,6 +12,7 @@ use App\Http\Controllers\CajonController;
 use App\Http\Controllers\InvitadoController;
 use App\Http\Controllers\ReservacionCajonController;
 use App\Http\Controllers\LoginApiController;
+use App\Http\Controllers\ChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ use App\Http\Controllers\LoginApiController;
 Route::get('/obtener-usuario', [LoginApiController::class, 'obtenerUsuario']);
 Route::get('/obtener-eventos', [LoginApiController::class, 'obtenerEventos']);
 Route::put('/actualizar-estatus', [LoginApiController::class, 'actualizarEstatus']);
+
+Route::put('/actualizar-estatus', [LoginApiController::class, 'actualizarEstatus']);
+Route::get('/chart-data', [ChartController::class, 'getData']);
+
 
 Route::get('/', function () {
     return view('Centro-Expositor');
