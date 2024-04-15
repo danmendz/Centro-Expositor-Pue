@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Evento;
 use App\Http\Requests\ReservaRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ReservaController
@@ -88,38 +89,41 @@ class ReservaController extends Controller
     public function aprobarEvento($idEvento)
     {
         try {
-            $results = DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
-            
-            foreach ($results as $result) {
-                var_dump($result);
-            }
-            
-        } catch (\Exception $e) {
-            die("Error: " . $e->getMessage());
-        }
-        
-        try {
-            $reservar = DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
+            DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
 
-            if($reservar > 0) {
-                $area = new Area();
-                $area->asignarArea($idEvento);
+            $area = new Area();
+            $area->asignarArea($idEvento);
 
-            } else {
-                return redirect()->route('reservas.index')
-                ->with('success', 'Reserva aprobada correctamente');
-            }
+            return redirect()->route('reservas.index')
+                ->with('success', 'Reserva aprobada exitosamente');
             
         } catch (\Exception $e) {
             return redirect()->route('reservas.index')
-            ->with('error', 'No se pudo reservar el evento');
+                ->with('error', 'Se produjo un error al aprobar la reserva: ' . $e->getMessage());
         }
     }
+
 
     /**
      * metodos para cliente
      */
+    public function misReservas()
+    {
+        $id_usuario = Auth::id();
+        $rol = Auth::user()->role;
 
+        $eventos = Evento::with(['reserva', 'salon'])
+            ->where('id_usuario', $id_usuario)
+            ->has('reserva')
+            ->get();
+
+        if($rol == 2) {
+            return view('cliente.reserva.mis-reservas', compact('eventos'));
+
+        } else {
+            return view('usuario.reserva.mis-reservas', compact('eventos'));
+        }
+    }
      /**
      * metodos para usuario
      */

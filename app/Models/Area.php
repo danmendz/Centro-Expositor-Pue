@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\Evento;
 
 /**
  * Class Area
@@ -54,11 +53,11 @@ class Area extends Model
 
     public function asignarArea($idEvento)
     {
-        $idSalon = Evento::where('id', '=', $idEvento)->value('id_salon');
-        // Actualizar el campo id_evento en la tabla areas
-        DB::table('areas')
-            ->where('id_salon', '=', $idSalon)
-            ->update(['id_evento' => $idEvento]);
+        $idSalon = DB::table('eventos')
+            ->where('id', $idEvento)
+            ->value('id_salon');
+            
+        DB::statement("UPDATE areas SET id_evento = ? WHERE id_salon = ?", [$idEvento, $idSalon]);
     }
     
 
