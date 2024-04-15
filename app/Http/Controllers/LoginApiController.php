@@ -19,22 +19,17 @@ class LoginApiController extends Controller
             'pass' => 'required|string|min:6',
         ]);
     
-        // Recuperar los datos de la solicitud
         $email = $request->input('email');
         $password = $request->input('pass');
     
-        // Buscar al usuario por su correo electrónico y contraseña
         $usuarioRecuperado = User::where('email', $email)->first();
     
-        // Verificar si se encontró al usuario y verificar su contraseña
         if ($usuarioRecuperado && password_verify($password, $usuarioRecuperado->password)) {
     
-            // Devolver la respuesta exitosa con los datos del usuario y sus eventos
             return response()->json([
                 'usuario' => $usuarioRecuperado,
             ], 200);
         } else {
-            // Devolver una respuesta de error si el usuario no fue encontrado o la contraseña es incorrecta
             return response()->json(['error' => 'Credenciales inválidas'], 403);
         }
 

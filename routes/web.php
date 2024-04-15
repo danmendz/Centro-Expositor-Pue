@@ -28,7 +28,7 @@ Route::get('/obtener-eventos', [LoginApiController::class, 'obtenerEventos']);
 Route::put('/actualizar-estatus', [LoginApiController::class, 'actualizarEstatus']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Centro-Expositor');
 })->name('page-index');
 
 Route::get('/dashboard', function () {
