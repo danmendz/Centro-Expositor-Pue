@@ -56,15 +56,13 @@
                             <div class="chart-pie pt-4">
                                 <canvas id="myPieChart"></canvas>
                                 <span id="disponibilidadNumero"></span>
+                                <p class="mb-2">Disponibilidad de los cajones de estacionamiento de una hora específica.</p>
                             </div>
-                            
-                            <hr>
-                            Cajones más utilizados durante los eventos.
                         </div>     
                     </div>
                 </div>           
 
-                <!-- Bar Chart -->
+                {{-- <!-- Bar Chart -->
                 <div class="col-xl-10 col-lg-10">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -83,12 +81,12 @@
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <p class="mb-2">Disponibilidad de los cajones de estacionamiento de una hora específica:</p>
+                                <p class="mb-2">Cajones utilizados en los eventos.</p>
                                 <p class="font-weight-bold mb-0" id="disponibilidadTexto"></p>
                             </div>
                         </div>
                     </div>
-                </div>                         
+                </div>                          --}}
 
             </div>
 
