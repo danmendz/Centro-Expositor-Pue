@@ -34,6 +34,7 @@ class LoginApiController extends Controller
         }
 
         // http://localhost:8000/obtener-usuario-eventos?email=cliente@gmail.com&pass=password
+        // https://astratech.shop/obtener-usuario-eventos?email=cliente@gmail.com&pass=password
     }
 
     public function obtenerEventos(Request $request)
@@ -84,6 +85,7 @@ class LoginApiController extends Controller
         }
 
         // http://localhost:8000/obtener-eventos?id=2
+        // https://astratech.shop/obtener-eventos?id=2
     }
 
     public function actualizarEstatus(Request $request)
@@ -103,6 +105,8 @@ class LoginApiController extends Controller
             return response()->json(['error' => 'Se produjo un error al actualizar estatus: ' . $th->getMessage()], 500);
         }        
         // http://localhost:8000/actualizar-estatus
+        // https://astratech.shop/actualizar-estatus
+
         // {
         //     "id": 2,
         //     "estat": 1
