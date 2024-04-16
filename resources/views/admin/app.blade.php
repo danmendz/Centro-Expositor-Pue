@@ -18,6 +18,9 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    {{-- <script data-main="js/app" src="js/lib/require.js"></script>
+    <script data-main="scripts/main" src="scripts/require.js"></script> --}}
+
 </head>
 
 <body id="page-top">
