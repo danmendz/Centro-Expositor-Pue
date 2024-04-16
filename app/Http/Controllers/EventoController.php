@@ -31,8 +31,9 @@ class EventoController extends Controller
     public function index()
     {
         $eventos = Evento::paginate();
+        $usuarios = User::all();
 
-        return view('admin.evento.index', compact('eventos'))
+        return view('admin.evento.index', compact('eventos', 'usuarios'))
             ->with('i', (request()->input('page', 1) - 1) * $eventos->perPage());
     }
 

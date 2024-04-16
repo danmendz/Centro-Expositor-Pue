@@ -38,6 +38,7 @@
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Gráfica en dona</h6>
+                            <p class="mb-2">Disponibilidad de los cajones de estacionamiento de una hora específica.</p>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
@@ -56,7 +57,6 @@
                             <div class="chart-pie pt-4">
                                 <canvas id="myPieChart"></canvas>
                                 <span id="disponibilidadNumero"></span>
-                                <p class="mb-2">Disponibilidad de los cajones de estacionamiento de una hora específica.</p>
                             </div>
                         </div>     
                     </div>
