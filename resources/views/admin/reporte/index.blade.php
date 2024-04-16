@@ -27,7 +27,7 @@
 
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800">Reportes de uso</h1>
-            <p class="mb-4">Reportes sobre el uso de cajones en los distintos eventos registrados en nuestra plataforma.</p>
+            {{-- <p class="mb-4">Reportes sobre el uso de cajones en los distintos eventos registrados en nuestra plataforma.</p> --}}
 
             <!-- Content Row -->
             <div class="row">
@@ -45,8 +45,12 @@
                                 <input type="date" class="form-control" id="fecha">
                             </div>
                             <div class="form-group">
-                                <label for="hora">Hora:</label>
-                                <input type="time" class="form-control" id="hora">
+                                <label for="hora_inicio">Hora de inicio:</label>
+                                <input type="time" class="form-control" id="hora_inicio">
+                            </div>
+                            <div class="form-group">
+                                <label for="hora_fin">Hora de fin:</label>
+                                <input type="time" class="form-control" id="hora_fin">
                             </div>
                             <button id="obtenerDatos" class="btn btn-primary">Obtener Datos</button>
                             <div class="chart-pie pt-4">
