@@ -33,8 +33,8 @@ class LoginApiController extends Controller
             return response()->json(['error' => 'Credenciales inválidas'], 403);
         }
 
-        // http://localhost:8000/obtener-usuario-eventos?email=cliente@gmail.com&pass=password
-        // https://astratech.shop/obtener-usuario-eventos?email=cliente@gmail.com&pass=password
+        // http://localhost:8000/obtener-usuario?email=cliente@gmail.com&pass=password
+        // https://astratech.shop/obtener-usuario?email=cliente@gmail.com&pass=password
     }
 
     public function obtenerEventos(Request $request)
