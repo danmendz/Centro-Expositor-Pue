@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class User
@@ -43,7 +44,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'lastnames', 'cellphone', 'role'];
+    // protected $fillable = ['name', 'email', 'lastnames', 'cellphone', 'role'];
+    protected $fillable = ['name', 'email', 'lastnames', 'cellphone', 'role', 'password'];
 
 
     /**
