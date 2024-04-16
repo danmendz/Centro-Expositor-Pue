@@ -52,8 +52,6 @@
                             <div class="chart-pie pt-4">
                                 <canvas id="myPieChart"></canvas>
                                 <span id="disponibilidadNumero"></span>
-                                <p>Total de cajones: <span id="totalCajones"></span></p>
-                                <p>Cajones ocupados: <span id="cajonesOcupados"></span></p>
                             </div>
                             
                             <hr>
