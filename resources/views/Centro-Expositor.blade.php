@@ -42,7 +42,7 @@
                       </div>
                     </div>
                     <h2>
-                      ¡Ven y disfruta de la Puebla!
+                      ¡Ven y disfruta de la magia de Puebla!
                     </h2>
                   </div>
                   <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
