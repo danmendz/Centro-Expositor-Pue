@@ -160,11 +160,39 @@ class EventoController extends Controller
     public function inserta(EventoRequest $request)
     {
         $rol = Auth::user()->role;
-
-        $event = Evento::create($request->validated());
-
+        
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'tipo' => 'required',
+            'asistentes' => 'required|numeric',
+            'acceso' => 'required',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+            'hora_inicio' => 'required',
+            'hora_fin' => 'required',
+            'id_salon' => 'required',
+            'estatus' => 'required',
+            'id_usuario' => 'required',
+            'comentarios' => 'nullable',
+        ]);
+    
+        $evento = new Evento();
+        $evento->nombre = $request->input('nombre');
+        $evento->tipo = $request->input('tipo');
+        $evento->asistentes = $request->input('asistentes');
+        $evento->acceso = $request->input('acceso');
+        $evento->fecha_inicio = $request->input('fecha_inicio');
+        $evento->fecha_fin = $request->input('fecha_fin');
+        $evento->hora_inicio = $request->input('hora_inicio');
+        $evento->hora_fin = $request->input('hora_fin');
+        $evento->id_salon = $request->input('id_salon');
+        $evento->estatus = $request->input('estatus');
+        $evento->id_usuario = $request->input('id_usuario');
+        $evento->comentarios = $request->input('comentarios');
+        $evento->save();
+    
         $reserva = new Reserva();
-        $reserva->insertaRegistro($event->id);
+        $reserva->insertaRegistro($evento->id);
 
         if($rol == 2) {
             return redirect()->route('cliente.index')
