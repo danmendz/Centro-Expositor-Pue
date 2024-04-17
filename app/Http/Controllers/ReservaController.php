@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reserva;
 use App\Models\Area;
+use App\Models\User;
 use App\Models\Evento;
 use App\Http\Requests\ReservaRequest;
 use Illuminate\Support\Facades\DB;
@@ -89,23 +90,7 @@ class ReservaController extends Controller
     public function aprobarEvento($idEvento)
     {
         try {
-            // Actualizar el estatus de las reservas y eventos
-            DB::table('reservas')
-                ->join('eventos', 'reservas.id_evento', '=', 'eventos.id')
-                ->where('eventos.id', $idEvento)
-                ->update(['reservas.estatus' => 'aprobada', 'eventos.estatus' => 'aprobado']);
-
-            // Actualizar el estatus de los salones
-            DB::table('salons')
-                ->join('eventos', 'salons.id', '=', 'eventos.id_salon')
-                ->where('eventos.id', $idEvento)
-                ->update(['salons.estatus' => 'ocupado']);
-
-            // Actualizar el rol de los usuarios
-            DB::table('users')
-                ->join('eventos', 'users.id', '=', 'eventos.id_usuario')
-                ->where('eventos.id', $idEvento)
-                ->update(['users.role' => 2]);
+            DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
 
             $area = new Area();
             $area->asignarArea($idEvento);
