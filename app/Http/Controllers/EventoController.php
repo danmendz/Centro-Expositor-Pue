@@ -24,8 +24,14 @@ class EventoController extends Controller
     public function eventos()
     {
         $allEventos = Evento::where('estatus', 'aprobado')->get();
+        $rol = Auth::user()->role;
 
-        return view('admin.index', compact('allEventos'));
+        if($rol == 3) {
+            return view('admin.index', compact('allEventos'));
+
+        } else {
+            return view('usuario.index', compact('allEventos'));
+        }
     }
 
     public function index()

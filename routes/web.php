@@ -84,9 +84,11 @@ Route::middleware('auth')->group(function () {
 
     // Cliente routes
     Route::middleware('can:acceder-cliente')->group(function () {
-        Route::get('/cliente/index', function () {
-            return view('cliente.index');
-        })->name('cliente.index');
+        // Route::get('/cliente/index', function () {
+        //     return view('cliente.index');
+        // })->name('cliente.index');
+
+        Route::get('/cliente/index', [EventoController::class, 'eventosDisponibles'])->name('cliente.index');
         
         Route::get('mis/eventos', [AreaController::class, 'accesoArea'])->name('eventos');
         // Route::get('autorizado/eventos', [AreaController::class, 'accesoArea'])->name('autorizados.eventos');
@@ -109,9 +111,11 @@ Route::middleware('auth')->group(function () {
 
     // Usuario routes
     Route::middleware('can:acceder-usuario')->group(function () {
-        Route::get('/usuario/index', function () {
-            return view('usuario.index');
-        })->name('usuario.index');
+        // Route::get('/usuario/index', function () {
+        //     return view('usuario.index');
+        // })->name('usuario.index');
+
+        Route::get('/usuario/index', [EventoController::class, 'eventos'])->name('usuario.index');
     });
 });
 

@@ -1,12 +1,16 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Usuario') }}
-        </h2>
-    </x-slot>
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success m-4">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-</x-app-layout>
+    <div class="row">
+        @foreach($allEventos as $evento)
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $evento->nombre }}</h5>
+                        <p class="card-text">Fecha: {{ $evento->fecha_inicio }}</p>
+                        <p class="card-text">Tipo: {{ $evento->tipo }}</p>
+                        <p class="card-text">Organizador: {{ $evento->user->name }}</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+<x-app-layout>
