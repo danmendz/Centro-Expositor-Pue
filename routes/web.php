@@ -75,7 +75,7 @@ Route::middleware('auth')->group(function () {
         })->name('reportes-index');
 
         Route::get('aprobar-evento/{idEvento}', [ReservaController::class, 'aprobarEvento'])->name('reservas.aprobar');
-        Route::get('aprobar-cajon/{idCajon}/{idUsuario}', [ReservaCajonController::class, 'aprobarReserva'])->name('reservas.cajon');
+        Route::get('aprobar-cajon/{idCajon}/{idUsuario}', [ReservacionCajonController::class, 'aprobarReserva'])->name('reservas.cajon');
 
     });
 

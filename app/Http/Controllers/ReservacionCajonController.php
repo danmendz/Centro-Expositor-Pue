@@ -83,21 +83,27 @@ class ReservacionCajonController extends Controller
             ->with('success', 'ReservacionCajon deleted successfully');
     }
 
-    public function aprobarReserva($id_persona, $id_cajon) 
+    public function aprobarReserva($id_usuario, $id_cajon) 
     {
+        $estatusCajon = 2;
+        $estatusReserva = 1;
+
         // Verificar si la reserva ya existe
-        $reservaExistente = ReservacionCajon::where('id_persona', $id_persona)
+        $reservaExistente = ReservacionCajon::where('id_usuario', $id_usuario)
                                             ->where('id_cajon', $id_cajon)
                                             ->count();
 
         if ($reservaExistente == 0) {
             // La reserva no existe, entonces procede a actualizar
-            ReservacionCajon::where('id_persona', $id_persona)
+            ReservacionCajon::where('id_usuario', $id_usuario)
                             ->where('id_cajon', $id_cajon)
-                            ->update(['estatus' => 1]);
+                            ->update(['estatus' => $estatusReserva]);
 
             Cajon::where('id', $id_cajon)
-                ->update(['estatus' => 2]);
+                ->update(['estatus' => $estatusCajon]);
+
+            return redirect()->route('reservacion-cajons.index')
+            ->with('success', 'Reservacion aprobada');
         }
     }
 
