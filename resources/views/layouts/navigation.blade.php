@@ -285,6 +285,10 @@
                     {{ __('Inicio') }}
                 </x-responsive-nav-link>
 
+                <x-responsive-nav-link :href="route('reservar.evento')" :active="request()->routeIs('reservar.evento')">
+                    {{ __('Reservar evento') }}
+                </x-responsive-nav-link>
+
                 <!-- Evento Dropdown Dropdown for small screens -->
                 <div class="sm:hidden">
                     <x-dropdown align="left" width="48">
@@ -486,12 +490,6 @@
                     </x-dropdown>
                 </div> --}}
             @endcan
-
-            <div class="sm:hidden">
-                <x-responsive-nav-link :href="route('reservar.evento')">
-                    {{ __('Reservar evento') }}
-                </x-responsive-nav-link>
-            </div>
         </div>
 
         <!-- Responsive Settings Options -->
