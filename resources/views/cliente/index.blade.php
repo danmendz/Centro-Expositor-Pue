@@ -1,15 +1,17 @@
 <x-app-layout>
-    <div class="container mt-4">
+    <div class="row">
         @if ($eventos != null)
             @foreach($eventos as $evento)
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $evento->nombre }}</h5>
-                        <p class="card-text">Fecha: {{ $evento->fecha_inicio }}</p>
-                        <p class="card-text">Tipo: {{ $evento->tipo }}</p>
-                        <p class="card-text">Salón: {{ $evento->salon->nombre }}</p>
-                        <p class="card-text">Organizador: {{ $evento->user->name }}</p>
-                        <!-- Mostrar más información del evento según sea necesario -->
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-light">
+                        <img src="{{ asset('images/drinks.jpg') }}" class="card-img-top" alt="Imagen del evento">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ $evento->nombre }}</h5>
+                            <p class="card-text"><strong>Fecha:</strong> {{ $evento->fecha_inicio }}</p>
+                            <p class="card-text"><strong>Tipo:</strong> {{ $evento->tipo }}</p>
+                            <p class="card-text"><strong>Organizador:</strong> {{ $evento->user->name }}</p>
+                            <a href="#" class="btn btn-primary">Ver más</a>
+                        </div>
                     </div>
                 </div>
             @endforeach
