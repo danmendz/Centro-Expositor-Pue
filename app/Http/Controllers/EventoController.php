@@ -234,6 +234,7 @@ class EventoController extends Controller
     public function eventosAutorizados()
     {
         $eventos = Evento::all();
+        $rol = Auth::user()->role;
 
         if($rol == 2) {
             return view('cliente.evento.eventos-autorizados', compact('eventos'));

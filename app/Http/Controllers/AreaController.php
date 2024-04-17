@@ -28,6 +28,7 @@ class AreaController extends Controller
     public function accesoArea()
     {
         $areas = Area::all();
+        $rol = Auth::user()->role;
 
         if($rol == 2) {
             return view('cliente.area.acceso', compact('areas'));
