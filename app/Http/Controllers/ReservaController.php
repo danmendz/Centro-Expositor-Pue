@@ -89,19 +89,30 @@ class ReservaController extends Controller
     public function aprobarEvento($idEvento)
     {
         try {
-            // Llamada a la función actualizar_estado_evento mediante una consulta SQL
-            $result = DB::select("SELECT actualizar_estado_evento(?) as result", [$idEvento]);
-            
-            // Verificar si la actualización fue exitosa
-            if ($result[0]->result == 'Estados actualizados exitosamente.') {
-                $area = new Area();
-                $area->asignarArea($idEvento);
+            // Actualizar el estatus de las reservas y eventos
+            DB::table('reservas')
+                ->join('eventos', 'reservas.id_evento', '=', 'eventos.id')
+                ->where('eventos.id', $idEvento)
+                ->update(['reservas.estatus' => 'aprobada', 'eventos.estatus' => 'aprobado']);
 
-                return redirect()->route('reservas.index')
-                    ->with('success', 'Reserva aprobada exitosamente');
-            } else {
-                throw new \Exception('La actualización de los estados no fue exitosa.');
-            }
+            // Actualizar el estatus de los salones
+            DB::table('salons')
+                ->join('eventos', 'salons.id', '=', 'eventos.id_salon')
+                ->where('eventos.id', $idEvento)
+                ->update(['salons.estatus' => 'ocupado']);
+
+            // Actualizar el rol de los usuarios
+            DB::table('users')
+                ->join('eventos', 'users.id', '=', 'eventos.id_usuario')
+                ->where('eventos.id', $idEvento)
+                ->update(['users.role' => 2]);
+
+            $area = new Area();
+            $area->asignarArea($idEvento);
+
+            return redirect()->route('reservas.index')
+                ->with('success', 'Reserva aprobada exitosamente');
+            
         } catch (\Exception $e) {
             return redirect()->route('reservas.index')
                 ->with('error', 'Se produjo un error al aprobar la reserva: ' . $e->getMessage());
