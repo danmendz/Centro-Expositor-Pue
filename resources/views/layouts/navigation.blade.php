@@ -35,7 +35,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('autorizados.eventos')">
                                         {{ __('Eventos autorizados') }}
                                     </x-dropdown-link>
                                     
@@ -62,7 +62,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
+                                    <x-dropdown-link :href="route('acceso.area')">
                                         {{ __('Areas de acceso') }}
                                     </x-dropdown-link>
                                     
@@ -301,11 +301,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('autorizados.eventos')">
                                 {{ __('Eventos autorizados') }}
                             </x-dropdown-link>
                             
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('lista.eventos')">
                                 {{ __('Eventos disponibles') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -328,11 +328,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('acceso.area')">
                                 {{ __('Areas de acceso') }}
                             </x-dropdown-link>
                             
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('reservados.cajones')">
                                 {{ __('Cajones reservados') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -355,11 +355,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('mis.reservas')">
                                 {{ __('Reservas de eventos') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('reservas.estacionamiento')">
                                 {{ __('Reservas de estacionamiento') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -387,14 +387,14 @@
                         </x-slot>
                 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('mis.eventos')">
                                 {{ __('Mis eventos') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('autorizados.eventos')">
                                 {{ __('Eventos autorizados') }}
                             </x-dropdown-link>
                             
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('lista.eventos')">
                                 {{ __('Eventos disponibles') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -417,15 +417,15 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('asignadas.areas')">
                                 {{ __('Areas asignadas') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('acceso.area')">
                                 {{ __('Areas de acceso') }}
                             </x-dropdown-link>
                             
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('reservados.cajones')">
                                 {{ __('Cajones reservados') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -448,11 +448,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('mis.reservas')">
                                 {{ __('Reservas de eventos') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('reservas.estacionamiento')">
                                 {{ __('Reservas de estacionamiento') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -475,11 +475,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('accesos.pendientes')">
                                 {{ __('Pendientes') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('accesos.aprobados')">
                                 {{ __('Aprobados') }}
                             </x-dropdown-link>
                         </x-slot>

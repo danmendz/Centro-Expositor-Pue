@@ -231,6 +231,18 @@ class EventoController extends Controller
         return view('cliente.evento.mis-eventos', compact('eventos'));
     }
 
+    public function eventosAutorizados()
+    {
+        $eventos = Evento::all();
+
+        if($rol == 2) {
+            return view('cliente.evento.eventos-autorizados', compact('eventos'));
+
+        } else {
+            return view('usuario.evento.eventos-autorizados', compact('eventos'));
+        }
+    }
+
      /**
      * metodos para usuario
      */

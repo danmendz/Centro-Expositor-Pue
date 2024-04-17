@@ -100,7 +100,9 @@ class LoginApiController extends Controller
             
         try {
             DB::statement("UPDATE cajons SET estatus = ? WHERE id = ?", [$estatus, $idCajon]);
-            
+
+            return response()->json(['message' => 'Estatus actualizado.'], 200);
+        
         } catch (\Throwable $th) {
             return response()->json(['error' => 'Se produjo un error al actualizar estatus: ' . $th->getMessage()], 500);
         }        

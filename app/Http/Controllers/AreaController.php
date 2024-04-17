@@ -27,10 +27,14 @@ class AreaController extends Controller
 
     public function accesoArea()
     {
-        $areas = Area::paginate();
+        $areas = Area::all();
 
-        return view('cliente.area.index', compact('areas'))
-            ->with('i', (request()->input('page', 1) - 1) * $areas->perPage());
+        if($rol == 2) {
+            return view('cliente.area.acceso', compact('areas'));
+
+        } else {
+            return view('usuario.area.acceso', compact('areas'));
+        }
     }
 
     /**
