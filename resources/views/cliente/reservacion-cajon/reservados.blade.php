@@ -20,9 +20,9 @@
                 <div class="col-md-3 mb-4">
                     <div class="card">
                         <div class="card-body" style="background-color: {{ $color }};">
-                            <h5 class="card-title">{{ $cajon->numero }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $cajon->nombre }}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $cajon->pasillo }}</h6>
+                            <h5 class="card-title">Numero de cajon: {{ $cajon->numero }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Area: {{ $cajon->nombre }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Pasillo: {{ $cajon->pasillo }}</h6>
                             <!-- Si quieres agregar un botón de información, descomenta la línea siguiente -->
                             {{-- <a href="{{ route('visualizar', ['id_cajon' => $cajon->id]) }}" class="btn btn-primary">Información del cajón</a> --}}
                         </div>
