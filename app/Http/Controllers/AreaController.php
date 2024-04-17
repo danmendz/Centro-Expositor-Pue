@@ -7,6 +7,7 @@ use App\Models\Evento;
 use App\Models\Salon;
 use App\Http\Requests\AreaRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AreaController

@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <h1>Eventos autorizados</h1>
+        <h1>Áreas de acceso</h1>
         <div class="row">
         </div>
     </div>
