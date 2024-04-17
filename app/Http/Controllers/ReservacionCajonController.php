@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReservacionCajon;
+use App\Models\Cajon;
 use App\Http\Requests\ReservacionCajonRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,6 +81,24 @@ class ReservacionCajonController extends Controller
 
         return redirect()->route('reservacion-cajons.index')
             ->with('success', 'ReservacionCajon deleted successfully');
+    }
+
+    public function aprobarReserva($id_persona, $id_cajon) 
+    {
+        // Verificar si la reserva ya existe
+        $reservaExistente = ReservacionCajon::where('id_persona', $id_persona)
+                                            ->where('id_cajon', $id_cajon)
+                                            ->count();
+
+        if ($reservaExistente == 0) {
+            // La reserva no existe, entonces procede a actualizar
+            ReservacionCajon::where('id_persona', $id_persona)
+                            ->where('id_cajon', $id_cajon)
+                            ->update(['estatus' => 1]);
+
+            Cajon::where('id', $id_cajon)
+                ->update(['estatus' => 2]);
+        }
     }
 
     /**

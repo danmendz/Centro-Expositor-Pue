@@ -53,10 +53,11 @@ class Area extends Model
 
     public function asignarArea($idEvento)
     {
-        $area = new Area();
-        $area->id_evento = $idEvento;
-        $area->save();
+        // Obtener el ID del salón asociado al evento
+        $idSalon = Evento::where('id', $idEvento)->value('id_salon');
+        
+        // Actualizar el campo 'id_evento' en la tabla 'areas' donde 'id_salon' coincida
+        $success = Area::where('id_salon', $idSalon)->update(['id_evento' => $idEvento]);
     }
-    
 
 }

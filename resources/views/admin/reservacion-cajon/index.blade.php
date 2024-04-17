@@ -61,7 +61,9 @@
                                             <td>
                                                 <form action="{{ route('reservacion-cajons.destroy',$reservacionCajon->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('reservacion-cajons.show',$reservacionCajon->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('reservacion-cajons.edit',$reservacionCajon->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('reservas.cajon', ['idCajon' => $reservacionCajon->id_cajon, 'idUsuario' => $reservacionCajon->id_usuario]) }}">
+                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Aprobar') }}
+                                                    </a>                                                    
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
