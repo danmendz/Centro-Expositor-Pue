@@ -375,6 +375,9 @@
                 <x-responsive-nav-link :href="route('cliente.index')" :active="request()->routeIs('cliente.index')">
                     {{ __('Inicio') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('reservar.evento')" :active="request()->routeIs('reservar.evento')">
+                    {{ __('Reservar evento') }}
+                </x-responsive-nav-link>
 
                 <!-- Eventos Dropdown for small screens -->
                 <div class="sm:hidden">
