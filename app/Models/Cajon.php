@@ -29,7 +29,7 @@ class Cajon extends Model
      *
      * @var array
      */
-    protected $fillable = ['numero', 'estatus', 'id_area'];
+    protected $fillable = ['numero', 'estatus', 'pasillo', 'id_area'];
 
 
     /**

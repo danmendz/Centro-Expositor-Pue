@@ -45,7 +45,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div style="width: 100px; height: 100px; background-color: {{ $color }}; display: inline-block; margin: 5px; margin-bottom: 30px;"></div>
-                            <h5 class="card-title">{{ $cajon->numero }}</h5>
+                            <h5 class="card-title">Numero: {{ $cajon->numero }}</h5>
+                            <h5 class="card-title">Pasillo: {{ $cajon->pasillo }}</h5>
                             <form action="{{ route('crear.reserva', ['id_cajon' => $cajon->id]) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-primary" style="background-color: #0b5ed7; border-color: white">Reservar cajón</button>

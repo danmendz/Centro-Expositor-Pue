@@ -20,7 +20,6 @@
                         <div class="card-header">{{ $area->nombre }}</div>
                         <div class="card-body">
                             <p class="card-text">Capacidad: {{ $area->capacidad }}</p>
-                            <p class="card-text">ID: {{ $area->id }}</p>
                             <a href="{{ route('listar.cajones', ['id_area' => $area->id]) }}" class="btn btn-primary">Ver Cajones</a>
                         </div>
                     </div>
