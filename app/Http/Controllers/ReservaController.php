@@ -90,10 +90,15 @@ class ReservaController extends Controller
     public function aprobarEvento($idEvento)
     {
         try {
-            DB::statement("CALL estatus_reserva_evento(?)", [$idEvento]);
+            DB::select('CALL estatus_reserva_evento('.$idEvento.')');
 
-            $area = new Area();
-            $area->asignarArea($idEvento);
+            $idSalon = DB::table('eventos')
+                ->where('id', '=', $idEvento)
+                ->value('id_salon');
+
+            DB::table('areas')
+                ->where('id_salon', '=', $idSalon)
+                ->update(['id_evento' => $idEvento]);
 
             return redirect()->route('reservas.index')
                 ->with('success', 'Reserva aprobada exitosamente');
