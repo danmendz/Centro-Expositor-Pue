@@ -73,12 +73,14 @@ Route::middleware('auth')->group(function () {
         Route::resource('cajons', CajonController::class);
         Route::resource('invitados', InvitadoController::class);
 
-        Route::get('reportes', function () {
-            return view('admin.reporte.index');
-        })->name('reportes-index');
+        Route::get('reportes', [ChartController::class, 'barChart'])->name('reportes-index');
+
+        // Route::get('reportes', function () {
+        //     return view('admin.reporte.index');
+        // })->name('reportes-index');
 
         Route::get('aprobar-evento/{idEvento}', [ReservaController::class, 'aprobarEvento'])->name('reservas.aprobar');
-        Route::get('aprobar-cajon/{idCajon}/{idUsuario}', [ReservacionCajonController::class, 'aprobarReserva'])->name('reservas.cajon');
+        Route::get('/aprobar-cajon/{idCajon}/{idUsuario}', [ReservacionCajonController::class, 'aprobarReserva'])->name('reservas.cajon');
 
     });
 

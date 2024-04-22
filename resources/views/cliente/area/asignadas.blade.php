@@ -17,6 +17,7 @@
             @foreach($areas as $area)
                 <div class="col-md-4 mb-4">
                     <div class="card">
+                        <i class="fas fa-car" style="font-size: 50px; margin: 0 auto"></i>
                         <div class="card-header">{{ $area->nombre }}</div>
                         <div class="card-body">
                             <p class="card-text">Capacidad: {{ $area->capacidad }}</p>

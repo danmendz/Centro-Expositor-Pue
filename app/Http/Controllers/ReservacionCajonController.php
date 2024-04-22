@@ -6,6 +6,7 @@ use App\Models\ReservacionCajon;
 use App\Models\Cajon;
 use App\Http\Requests\ReservacionCajonRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ReservacionCajonController
@@ -83,29 +84,54 @@ class ReservacionCajonController extends Controller
             ->with('success', 'ReservacionCajon deleted successfully');
     }
 
-    public function aprobarReserva($id_usuario, $id_cajon) 
+    // public function aprobarReserva(ReservacionCajonRequest $request)
+    // {
+    //     $id_usuario = $request->input('id_usuario');
+    //     $id_cajon = $request->input('id_cajon');
+
+    //     try {
+    //         // Actualizar la reserva usando Eloquent
+    //         $reserva = ReservacionCajon::where('id_cajon', $id_cajon)
+    //             ->where('id_usuario', $id_usuario)
+    //             ->update(['estatus' => 1]);
+
+    //         // Verificar si la actualización de la reserva fue exitosa
+    //         if ($reserva > 0) {
+    //             // Actualizar el cajón usando Eloquent
+    //             $cajon = Cajon::where('id', $id_cajon)
+    //                 ->update(['estatus' => 2]);
+
+    //             // Verificar si la actualización del cajón fue exitosa
+    //             if ($cajon > 0) {
+    //                 // Commit la transacción
+    //                 return redirect()->route('reservacion-cajons.index')
+    //                     ->with('success', 'Reservacion aprobada');
+    //             }
+    //         }
+    //     } catch (\Exception $e) {
+    //         return redirect()->route('reservacion-cajons.index')
+    //             ->with('error', 'Error al aprobar reserva: ' . $e->getMessage());
+    //     }
+    // }
+
+
+    public function aprobarReserva($idCajon, $idUsuario)
     {
-        $estatusCajon = 2;
-        $estatusReserva = 1;
+        $id_cajon = intval($idCajon);
+        $id_usuario = intval($idUsuario);
 
-        // Verificar si la reserva ya existe
-        $reservaExistente = ReservacionCajon::where('id_usuario', $id_usuario)
-                                            ->where('id_cajon', $id_cajon)
-                                            ->count();
-
-        if ($reservaExistente == 0) {
-            // La reserva no existe, entonces procede a actualizar
-            ReservacionCajon::where('id_usuario', $id_usuario)
-                            ->where('id_cajon', $id_cajon)
-                            ->update(['estatus' => $estatusReserva]);
-
-            Cajon::where('id', $id_cajon)
-                ->update(['estatus' => $estatusCajon]);
+        try {
+            DB::statement('CALL aprobar_reserva_cajon(?, ?)', [$id_usuario, $id_cajon]);
 
             return redirect()->route('reservacion-cajons.index')
-            ->with('success', 'Reservacion aprobada');
-        }
+                ->with('success', 'Reservacion aprobada');
+           
+       } catch (\Exception $e) {
+            return redirect()->route('reservacion-cajons.index')
+                ->with('error', 'Error al aprobar reserva'. $e->getMessage());
+       }
     }
+
 
     /**
      * metodos para cliente
@@ -147,9 +173,8 @@ class ReservacionCajonController extends Controller
         $reservas = ReservacionCajon::where('id_usuario', $id_usuario)
             ->get();
 
-        if($rol == 2) {
+        if ($rol == 2) {
             return view('cliente.reservacion-cajon.index', compact('reservas'));
-
         } else {
             return view('usuario.reservacion-cajon.index', compact('reservas'));
         }
@@ -168,16 +193,15 @@ class ReservacionCajonController extends Controller
             ->where('reservacion_cajons.estatus', 1)
             // ->distinct()
             ->get();
-        
-        if($rol == 2) {
-            return view('cliente.reservacion-cajon.reservados', compact('cajones'));
 
+        if ($rol == 2) {
+            return view('cliente.reservacion-cajon.reservados', compact('cajones'));
         } else {
             return view('usuario.reservacion-cajon.reservados', compact('cajones'));
         }
     }
 
-     /**
+    /**
      * metodos para usuario
      */
 }

@@ -92,11 +92,11 @@ class LoginApiController extends Controller
     {
         $request->validate([
             'id' => 'required|integer',
-            'estat' => 'required|integer',
+            'estatus' => 'required|integer',
         ]);
     
         $idCajon = $request->input('id');
-        $estatus = $request->input('estat');
+        $estatus = $request->input('estatus');
             
         try {
             DB::statement("UPDATE cajons SET estatus = ? WHERE id = ?", [$estatus, $idCajon]);

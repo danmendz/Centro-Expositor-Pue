@@ -29,6 +29,9 @@
             @foreach($cajones as $cajon)
                 @php
                     switch ($cajon->estatus) {
+                        case 0:
+                            $color = 'green';
+                            break;
                         case 1:
                             $color = 'red';
                             break;

@@ -20,4 +20,15 @@ class ChartController extends Controller
         // Devolver los datos como una respuesta JSON
         return response()->json(['disponibilidad' => $disponibilidad]);
     }
+
+    
+    public function barChart()
+    {
+    // Replace this with your actual data retrieval logic 
+        $data = [
+            'labels' => ['Cajon 1', 'Cajon 2', 'Cajon 3', 'Cajon 4', 'Cajon 5'], 
+            'data' => [45, 39, 60, 61, 6],
+        ];
+        return view ('admin.reporte.index', compact ('data'));
+    }
 }
